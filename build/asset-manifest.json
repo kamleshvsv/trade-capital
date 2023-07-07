@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.33496b96.css",
+    "main.js": "/static/js/main.c081e459.js",
+    "static/media/background-min.gif": "/static/media/background-min.b9be4677ebb591273eba.gif",
+    "static/media/waves-white.svg": "/static/media/waves-white.56607573d7f27cc7c8eb151ea3d5bc67.svg",
+    "static/media/curved-6.jpg": "/static/media/curved-6.71ee1d1cc8196ed2126b.jpg",
+    "static/media/white-curved.jpeg": "/static/media/white-curved.a5b7db662b0b14ab5534.jpeg",
+    "static/media/team-3.jpg": "/static/media/team-3.b75146da5bfdf9d8ae61.jpg",
+    "static/media/qr.webp": "/static/media/qr.9084caf55b6aeb51164e.webp",
+    "static/media/team-2.jpg": "/static/media/team-2.e725aef8c892cb21f262.jpg",
+    "static/media/mutual.90813b23.svg": "/static/media/mutual.90813b23.60ea9e7a9b8b0a87ad84c0d09c2a821a.svg",
+    "static/media/portfolio.56efdbd4.svg": "/static/media/portfolio.56efdbd4.629473e21b3813488a46e5f6ee28e4ea.svg",
+    "static/media/trading.98e27021.svg": "/static/media/trading.98e27021.c194ddf4a791dcfa2ea6bd9acaed6d3a.svg",
+    "static/media/logo-spotify.svg": "/static/media/logo-spotify.e83cf56c9d99a1fdf59e8deb58bbe470.svg",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.33496b96.css",
+    "static/js/main.c081e459.js"
+  ]
+}
