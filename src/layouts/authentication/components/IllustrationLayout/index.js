@@ -1,6 +1,6 @@
 /**
 =========================================================
-* Trade Capital React - v4.0.0
+* Capital Growth Trader React - v4.0.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
@@ -19,15 +19,15 @@ import PropTypes from "prop-types";
 // @mui material components
 import Grid from "@mui/material/Grid";
 
-// Trade Capital React components
+// Capital Growth Trader React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
-// Trade Capital React examples
+// Capital Growth Trader React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 
-// Trade Capital React page layout routes
+// Capital Growth Trader React page layout routes
 import pageRoutes from "page.routes";
 
 // Images

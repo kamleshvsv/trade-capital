@@ -1,6 +1,6 @@
 /**
 =========================================================
-* Trade Capital React - v4.0.0
+* Capital Growth Trader React - v4.0.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react

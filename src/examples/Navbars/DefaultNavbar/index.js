@@ -1,28 +1,30 @@
 import { useState, useEffect } from "react";
 
 // react-router components
-import { Link } from "react-router-dom";
-
-// prop-types is a library for typechecking of props.
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from './../../../assets/images/logo.jpg'
 import PropTypes from "prop-types";
 
 // @mui material components
 import Container from "@mui/material/Container";
 import Icon from "@mui/material/Icon";
 
-// Trade Capital React components
 import SoftBox from "components/SoftBox";
-import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 
-// Trade Capital React examples
 import DefaultNavbarLink from "examples/Navbars/DefaultNavbar/DefaultNavbarLink";
 import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMobile";
 
-// Trade Capital React base styles
+// Capital Growth Trader React base styles
 import breakpoints from "assets/theme/base/breakpoints";
 
 function DefaultNavbar({ transparent, light, action }) {
+  const navigate =  useNavigate()
+  const location = useLocation()
+
+  const goToService = (url) => {
+      navigate(`/${url}`, { replace: true });
+  }
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
 
@@ -77,13 +79,38 @@ function DefaultNavbar({ transparent, light, action }) {
         })}
       >
         <SoftBox component={Link} to="/" py={transparent ? 1.5 : 0.75} lineHeight={1}>
-          <SoftTypography variant="button" component="h6" fontWeight="bold"  className="company-name-other">
-            Trade Capital
-          </SoftTypography>
+        <img src={logo} alt="logo" className="logo-style"/>
+          {/* <SoftTypography variant="button" component="h6" fontWeight="bold"  className="company-name-other">
+            Capital Growth Trader
+          </SoftTypography> */}
         </SoftBox>
         <SoftBox color="inherit" display={{ xs: "none", lg: "flex" }} m={0} p={0}>
           <DefaultNavbarLink icon="" name="home" route="/home" light={light} />
-          <DefaultNavbarLink icon="" name="features" route="/features" light={light} />
+          <SoftBox
+      mx={1}
+      p={1}
+      display="flex"
+      alignItems="center"
+      sx={{ cursor: "pointer", userSelect: "none" }}
+    >
+      <Icon
+      >
+      </Icon>
+          <div className="dropdown">
+        <a className="dropdown-toggle menu"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Features
+        </a>
+        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li className={`${location.pathname === '/commodity-trading' ? 'is-active-dropdown' : ''}`} ><a onClick={() => { goToService('commodity-trading')}} className="dropdown-item" >Commodity Trading</a></li>
+          <li className={`${location.pathname === '/currency-trading'  ? 'is-active-dropdown' : ''}`}><a  onClick={() => {goToService('currency-trading')}} className="dropdown-item" >Currency Trading</a></li>
+          <li className={`${location.pathname === '/derivatives-trading'  ? 'is-active-dropdown' : ''}`}><a onClick={() => {goToService('derivatives-trading')}} className="dropdown-item">Derivative Trading</a></li>
+          <li className={`${location.pathname === '/equity-trading'  ? 'is-active-dropdown' : ''}`}><a onClick={() => {goToService('equity-trading')}} className="dropdown-item">Equity Trading</a></li>
+          <li className={`${location.pathname === '/portfolio-management'  ? 'is-active-dropdown' : ''}`}><a onClick={() => {goToService('portfolio-management')}} className="dropdown-item">Portfolio Management</a></li>
+          <li className={`${location.pathname === '/wealth-management'  ? 'is-active-dropdown' : ''}`}><a onClick={() => {goToService('wealth-management')}} className="dropdown-item">Wealth Management</a></li>
+        </ul>
+      </div>
+      </SoftBox>
+          {/* <DefaultNavbarLink icon="" name="features" route="/features" light={light} /> */}
           <DefaultNavbarLink
             icon=""
             name="about"

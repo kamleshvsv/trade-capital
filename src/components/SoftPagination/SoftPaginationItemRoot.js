@@ -1,6 +1,6 @@
 /**
 =========================================================
-* Trade Capital React - v4.0.0
+* Capital Growth Trader React - v4.0.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 // @mui material components
 import { styled } from "@mui/material/styles";
 
-// Trade Capital React components
+// Capital Growth Trader React components
 import SoftButton from "components/SoftButton";
 
 export default styled(SoftButton)(({ theme, ownerState }) => {

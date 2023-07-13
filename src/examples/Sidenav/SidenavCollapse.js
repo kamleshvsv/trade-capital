@@ -1,6 +1,6 @@
 /**
 =========================================================
-* Trade Capital React - v4.0.0
+* Capital Growth Trader React - v4.0.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
@@ -23,7 +23,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Icon from "@mui/material/Icon";
 
-// Trade Capital React components
+// Capital Growth Trader React components
 import SoftBox from "components/SoftBox";
 
 // Custom styles for the SidenavCollapse
@@ -34,7 +34,7 @@ import {
   collapseText,
 } from "examples/Sidenav/styles/sidenavCollapse";
 
-// Trade Capital React context
+// Capital Growth Trader React context
 import { useSoftUIController } from "context";
 
 function SidenavCollapse({ color, icon, name, children, active, noCollapse, open, ...rest }) {

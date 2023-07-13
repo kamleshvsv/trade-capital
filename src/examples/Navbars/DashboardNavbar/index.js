@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 
 import PropTypes from "prop-types";
@@ -14,8 +14,6 @@ import Icon from "@mui/material/Icon";
 
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
-import SoftInput from "components/SoftInput";
-
 import Breadcrumbs from "examples/Breadcrumbs";
 import NotificationItem from "examples/Items/NotificationItem";
 
@@ -126,12 +124,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
         </SoftBox>
         {isMini ? null : (
           <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
-            {/* <SoftBox pr={1}>
-              <SoftInput
-                placeholder="Type here..."
-                icon={{ component: "search", direction: "left" }}
-              />
-            </SoftBox> */}
+         
             <SoftBox color={light ? "white" : "inherit"}>
                 <IconButton sx={navbarIconButton} size="small">
                   <Icon

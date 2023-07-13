@@ -1,10 +1,15 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Icon from "@mui/material/Icon";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
 function DefaultNavbarLink({ icon, name, route, light }) {
+  const navigate =  useNavigate()
+
+  const goToService = (url) => {
+      navigate(`/${url}`, { replace: true });
+  }
   return (
     <SoftBox
       component={Link}
@@ -23,20 +28,27 @@ function DefaultNavbarLink({ icon, name, route, light }) {
       >
         {icon}
       </Icon>
-      <NavLink to={route}  className= {(navData) => (navData.isActive ? "is-active menu" : 'none menu')}> {name}</NavLink>
-      {/* <span exact activeClassName='is-active'  to={route} >
-        {name}
-      </span> */}
-      {/* <SoftTypography
-        exact activeClassName='is-active' 
-        variant="button"
-        fontWeight="regular"
-        color={light ? "white" : "dark"}
-        textTransform="capitalize"
-        sx={{ width: "100%", lineHeight: 0 }}
-      >
-        &nbsp;{name}
-      </SoftTypography> */}
+      {
+        name === 'features' ? (
+          <div className="dropdown">
+        <a className="dropdown-toggle menu"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Features
+        </a>
+        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a onClick={() => { goToService('commodity-trading')}} className="dropdown-item" >Commodity Trading</a></li>
+          <li><a  onClick={() => {goToService('currency-trading')}} className="dropdown-item" >Currency Trading</a></li>
+          <li><a onClick={() => {goToService('derivatives-trading')}} className="dropdown-item">Derivative Trading</a></li>
+          <li><a onClick={() => {goToService('equity-trading')}} className="dropdown-item">Equity Trading</a></li>
+          <li><a onClick={() => {goToService('portfolio-management')}} className="dropdown-item">Portfolio Management</a></li>
+          <li><a onClick={() => {goToService('wealth-management')}} className="dropdown-item">Wealth Management</a></li>
+        </ul>
+      </div>
+        ) : (
+          <NavLink to={route}  className= {(navData) => (navData.isActive ? "is-active menu" : 'none menu')}> {name}</NavLink>
+        )
+      }
+      
+   
     </SoftBox>
   );
 }

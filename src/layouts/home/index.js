@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import HotlistOne from "./Trading-view/trading-view";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import trading from './../../assets/images/trading.98e27021.svg';
@@ -37,7 +37,7 @@ function HomePage() {
     id:4,
     heading : 'Our Legacy',
     description : [
-      'With a presence in over 12 State in India , Trade Capital has built a Indian & global brand and a legacy over the past 10 years. us in a unique position to create the best is class experience.',
+      'With a presence in over 12 State in India , Capital Growth Trader has built a Indian & global brand and a legacy over the past 10 years. us in a unique position to create the best is class experience.',
     ]
   }
 ]
@@ -55,7 +55,7 @@ function HomePage() {
     <HotlistOne />
     <div className="broking-container">
       <div className="main-heading g-container">
-        <h1>Why Trade Capital Broking is The Best Brokerage Firm for You ?</h1>
+        <h1>Why Capital Growth Trader Broking is The Best Brokerage Firm for You ?</h1>
       </div>
       <br />
 
@@ -81,7 +81,7 @@ function HomePage() {
         <div className="col-md-4 mb-2 mt-2"  >
           <div className="other-cards">
             <div className="bg-profile">
-              <img src={trading} />
+              <img src={trading} alt="2"/>
             </div>
             <h3 className="mt-2">Trading</h3>
           </div>
@@ -89,7 +89,7 @@ function HomePage() {
         <div className="col-md-4 mb-2 mt-2"  >
           <div className="other-cards ">
             <div className="bg-profile">
-            <img src={management} />
+            <img src={management} alt="2"/>
             </div>
             <h3 className="mt-2">Profile Management</h3>
           </div>
@@ -97,7 +97,7 @@ function HomePage() {
         <div className="col-md-4 mb-2 mt-2"  >
           <div className="other-cards ">
             <div className="bg-profile">
-            <img src={mututal} />
+            <img src={mututal} alt="2"/>
             </div>
             <h3 className="mt-2">Mutual Fund</h3>
           </div>

@@ -6,14 +6,8 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import { ErrorMessage, Form, Formik } from "formik";
 import BasicFooter from "layouts/authentication/components/Footer/basic-footer";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from 'yup';
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import PinterestIcon from "@mui/icons-material/Pinterest";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 function ContactUS() {
     const [isDisabled, setDisabled] = useState(false);
@@ -46,27 +40,18 @@ function ContactUS() {
       <div className="header-section text-center">
         <h4><span >Home</span> / <span >Contact</span></h4>
       </div>
-      {/* <div className="container">
-        <div className="contact-card">
-          <h1 className="main-heading mb-3 text-white" >Contact Us</h1>
-          <p>Trade with low* brokerage charges and avail a host of facilities with one of the best broking companies in India. In case you are not satisfied with broker resolution, You can also file complaint at SEBI Scores website</p>
-          <p>Customer Support: mgcptl@gmail.com</p>
-          <p>Conact Number : 99876302220</p>
-          <p>Address: Near Himayat Nagar, Hyderabad, Andhra Pradesh - 500029</p>
-           </div>
-      </div> */}
       
       <div className="container mt-4">
       <div className="row contact-card">
         <div className="col-md-7">
           <h1 className="main-heading mb-3 text-white" >Contact Us</h1>
-          <p>Trade with low* brokerage charges and avail a host of facilities with one of the best broking companies in India. In case you are not satisfied with broker resolution, You can also file complaint at SEBI Scores website</p>
-          <p>Customer Support: mgcptl@gmail.com</p>
-          <p>Conact Number : 99876302220</p>
+          <p>Trade with low brokerage charges and access a wide range of facilities by choosing one of the best broking companies in India. If you are unsatisfied with your broker's resolution, you also have the option to file a complaint on the SEBI Scores website.</p>
+          <p>Customer Support: <a href="mailto:cgttrade06@gmail.com" title="glorythemes">cgttrade06@gmail.com</a></p>
+          <p>Conact Number :  <a href="tel:+919039441976" title="glorythemes">+919039441976</a></p>
           <p>Address: Near Himayat Nagar, Hyderabad, Andhra Pradesh - 500029</p>
           <div className="text-white">
 
-          <SoftBox display="flex" >
+          {/* <SoftBox display="flex" >
                   <SoftBox mr={3} color="secondary">
                     <FacebookIcon fontSize="small" />
                   </SoftBox>
@@ -82,7 +67,7 @@ function ContactUS() {
                   <SoftBox color="secondary">
                     <LinkedInIcon fontSize="small" />
                   </SoftBox>
-              </SoftBox>
+              </SoftBox> */}
 
           </div>
         </div>

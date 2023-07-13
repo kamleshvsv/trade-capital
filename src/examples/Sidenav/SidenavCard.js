@@ -6,7 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import Icon from "@mui/material/Icon";
 import Link from "@mui/material/Link";
 
-// Trade Capital React components
+// Capital Growth Trader React components
 import SoftButton from "components/SoftButton";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
@@ -14,7 +14,7 @@ import SoftTypography from "components/SoftTypography";
 // Custom styles for the SidenavCard
 import { card, cardContent, cardIconBox, cardIcon } from "examples/Sidenav/styles/sidenavCard";
 
-// Trade Capital React context
+// Capital Growth Trader React context
 import { useSoftUIController } from "context";
 
 function SidenavCard() {

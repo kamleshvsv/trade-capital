@@ -7,10 +7,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
 
-// Trade Capital React components
+// Capital Growth Trader React components
 import SoftBox from "components/SoftBox";
 
-// Trade Capital React context
+// Capital Growth Trader React context
 import { useSoftUIController, setLayout } from "context";
 
 function DashboardLayout({ children }) {
@@ -19,14 +19,14 @@ function DashboardLayout({ children }) {
   const { pathname } = useLocation();
   const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false)
-  useEffect(() => {
-    if(localStorage.getItem('email')){
-      setIsVisible(true)
-    }else{
-      setIsVisible(false)
-      navigate('/authentication/sign-in', { replace: true });
-    }
-  },[])
+  // useEffect(() => {
+  //   if(localStorage.getItem('email')){
+  //     setIsVisible(true)
+  //   }else{
+  //     setIsVisible(false)
+  //     navigate('/authentication/sign-in', { replace: true });
+  //   }
+  // },[])
 
   useEffect(() => {
     setLayout(dispatch, "dashboard");

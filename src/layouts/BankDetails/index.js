@@ -1,13 +1,11 @@
-// Trade Capital React components
+// Capital Growth Trader React components
 import SoftBox from "components/SoftBox";
 
-// Trade Capital React examples
+// Capital Growth Trader React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import { Card, Grid } from "@mui/material";
-import SoftTypography from "components/SoftTypography";
-import SoftButton from "components/SoftButton";
 import barcode from "./../../assets/images/qr.webp"
 
 
@@ -39,7 +37,7 @@ function BankDetails() {
           <div className="text-center">
             <strong>Bank Details</strong>
           </div>
-          <table className="table table-striped bank-table table-responsive">
+          <table className="table table-striped bank-table m-flex table-responsive">
             <thead>
                 <tr>
                     <th>Bank Name</th>

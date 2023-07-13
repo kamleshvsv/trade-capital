@@ -4,13 +4,13 @@ import { createContext, useContext, useReducer, useMemo } from "react";
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
 
-// The Trade Capital PRO Material main context
+// The Capital Growth Trader PRO Material main context
 const SoftUI = createContext(null);
 
 // Setting custom name for the context which is visible on react dev tools
 SoftUI.displayName = "SoftUIContext";
 
-// Trade Capital React reducer
+// Capital Growth Trader React reducer
 function reducer(state, action) {
   switch (action.type) {
     case "MINI_SIDENAV": {
@@ -43,7 +43,7 @@ function reducer(state, action) {
   }
 }
 
-// Trade Capital React context provider
+// Capital Growth Trader React context provider
 function SoftUIControllerProvider({ children }) {
   const initialState = {
     miniSidenav: false,
@@ -63,7 +63,7 @@ function SoftUIControllerProvider({ children }) {
   return <SoftUI.Provider value={value}>{children}</SoftUI.Provider>;
 }
 
-// Trade Capital React custom hook for using context
+// Capital Growth Trader React custom hook for using context
 function useSoftUIController() {
   const context = useContext(SoftUI);
 

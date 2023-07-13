@@ -1,11 +1,11 @@
-import Grid from "@mui/material/Grid";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import PinterestIcon from "@mui/icons-material/Pinterest";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import SoftBox from "components/SoftBox";
+import logo from './../../../../assets/images/logo.jpg'
+import { useNavigate } from "react-router-dom";
 function BasicFooter() {
+    const navigate =  useNavigate()
+
+    const goToService = (url) => {
+        navigate(`/${url}`, { replace: true });
+    }
   return (
     <div>
         <footer id="footer" className="footer-1">
@@ -14,8 +14,11 @@ function BasicFooter() {
                     <div className="row">
                         <div className="col-xs-12 col-sm-6 col-md-3">
                             <div className="widget subscribe no-box">
-                                <h5 className="widget-title">Trade Capital<span></span></h5>
-                                <p className="g-font-15px">A full fledged solution for Trading, Mutual Funds and Transaction Profile Management. </p>
+                                <img src={logo} alt="logo" className="footer-logo"/>
+                                <h5 className="widget-title">
+                                   
+                                Capital Growth Trader</h5>
+                                <p className="g-font-15px">We're here to help you navigate the stock market with confidence.  </p>
                             </div>
                         </div>
 
@@ -24,13 +27,13 @@ function BasicFooter() {
                         <div className="col-xs-12 col-sm-6 col-md-3">
                             <div className="widget no-box">
                                 <h5 className="widget-title">Services<span></span></h5>
-                               <ul className="g-font-14px">
-                                <li >Commodity Trading</li>
-                                <li>Currency Trading</li>
-                                <li>Derivatives Trading</li>
-                                <li>Equity Trading</li>
-                                <li>Portfolio Management</li>
-                                <li>Wealth Management</li>
+                               <ul className="g-font-14px footer-link">
+                                <li onClick={() => { goToService('commodity-trading')}}>Commodity Trading</li>
+                                <li onClick={() => {goToService('currency-trading')}}>Currency Trading</li>
+                                <li onClick={() => {goToService('derivatives-trading')}}>Derivatives Trading</li>
+                                <li onClick={() => {goToService('equity-trading')}}>Equity Trading</li>
+                                <li onClick={() => {goToService('portfolio-management')}}>Portfolio Management</li>
+                                <li onClick={() => {goToService('wealth-management')}}>Wealth Management</li>
                                </ul>
                             </div>
                         </div>
@@ -38,9 +41,9 @@ function BasicFooter() {
                         <div className="col-xs-12 col-sm-6 col-md-3">
                             <div className="widget no-box ">
                                 <h5 className="widget-title">Contact Us<span></span></h5>
-                                <p className="g-font-14px"><a href="mailto:info@domain.com" title="glorythemes">info@domain.com</a></p>
+                                <p className="g-font-14px"><a href="mailto:cgttrade06@gmail.com" title="glorythemes">cgttrade06@gmail.com</a></p>
                                 <ul className="social-footer2">
-                                    <SoftBox display="flex" >
+                                    {/* <SoftBox display="flex" >
                                         <SoftBox mr={3} color="secondary">
                                           <FacebookIcon fontSize="small" />
                                         </SoftBox>
@@ -56,7 +59,7 @@ function BasicFooter() {
                                         <SoftBox color="secondary">
                                           <LinkedInIcon fontSize="small" />
                                         </SoftBox>
-                                    </SoftBox>
+                                    </SoftBox> */}
                                 </ul>
                             </div>
                         </div>
@@ -69,7 +72,7 @@ function BasicFooter() {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12 text-center">
-                            <p className="g-font-14px">Copyright Trade Capital © 2023. All rights reserved.</p>
+                            <p className="g-font-14px">Copyright Capital Growth Trader © 2023. All rights reserved.</p>
                         </div>
                     </div>
                 </div>

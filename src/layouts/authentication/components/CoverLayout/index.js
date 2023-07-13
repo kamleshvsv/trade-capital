@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 
-// Trade Capital React components
+// Capital Growth Trader React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -14,7 +14,7 @@ function CoverLayout({ color, header, title, description, image, top, children }
   const { pathname } = useLocation();
   const [isSignIn, setIsSignIn] = useState()
   useEffect(()=> {
-    if(pathname == '/authentication/sign-up'){
+    if(pathname === '/authentication/sign-up'){
       setIsSignIn(true)
     }else{
       setIsSignIn(false)

@@ -17,7 +17,12 @@ import BankDetails from "layouts/BankDetails";
 import AddBankDetails from "layouts/BankDetails/AddBankDetails";
 import PaymentDetails from "layouts/Payment";
 import PortfolioDetails from "layouts/Portfolio";
-import LogOut from "layouts/authentication/sign-in/logout";
+import CommodityTrading from "layouts/authentication/components/Services/commodity";
+import CurrencyTrading from "layouts/authentication/components/Services/currency";
+import DerivativeTrading from "layouts/authentication/components/Services/derivative";
+import EquityTrading from "layouts/authentication/components/Services/equity";
+import PortfolioTrading from "layouts/authentication/components/Services/portfolio";
+import WealthManagement from "layouts/authentication/components/Services/wealth";
 
 const routes = [
   {
@@ -110,6 +115,60 @@ const routes = [
     route: "/contact",
     icon: <SpaceShip size="12px" />,
     component: <ContactUS />,
+    noCollapse: true,
+  },
+  {
+    type: "none",
+    name: "Commodity Trading",
+    key: "commodity-trading",
+    route: "/commodity-trading",
+    icon: <SpaceShip size="12px" />,
+    component: <CommodityTrading />,
+    noCollapse: true,
+  },
+  {
+    type: "none",
+    name: "Currency Trading",
+    key: "currency-trading",
+    route: "/currency-trading",
+    icon: <SpaceShip size="12px" />,
+    component: <CurrencyTrading />,
+    noCollapse: true,
+  },
+  {
+    type: "none",
+    name: "Derivatives Trading",
+    key: "derivatives-trading",
+    route: "/derivatives-trading",
+    icon: <SpaceShip size="12px" />,
+    component: <DerivativeTrading />,
+    noCollapse: true,
+  },
+  {
+    type: "none",
+    name: "Equity Trading",
+    key: "equity-trading",
+    route: "/equity-trading",
+    icon: <SpaceShip size="12px" />,
+    component: <EquityTrading />,
+    noCollapse: true,
+  },
+  {
+    type: "none",
+    name: "Portfolio Management",
+    key: "portfolio-management",
+    route: "/portfolio-management",
+    icon: <SpaceShip size="12px" />,
+    component: <PortfolioTrading />,
+    noCollapse: true,
+  },
+  {
+    type: "none",
+    name: "Wealth Management",
+    key: "wealth-management",
+    route: "/wealth-management",
+    icon: <SpaceShip size="12px" />,
+    component: <WealthManagement />,
     noCollapse: true,
   },
 ];

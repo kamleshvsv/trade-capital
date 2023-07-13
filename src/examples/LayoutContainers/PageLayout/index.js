@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 import SoftBox from "components/SoftBox";
 
-// Trade Capital React context
+// Capital Growth Trader React context
 import { useSoftUIController, setLayout } from "context";
 
 function PageLayout({ background, children }) {

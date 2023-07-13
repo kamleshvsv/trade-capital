@@ -1,16 +1,10 @@
-// Trade Capital React components
+// Capital Growth Trader React components
 import SoftBox from "components/SoftBox";
 
-// Trade Capital React examples
+// Capital Growth Trader React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import { ErrorMessage, Form, Formik } from "formik";
-import SoftTypography from "components/SoftTypography";
-import SoftInput from "components/SoftInput";
-import { useState } from "react";
-import { toast } from "react-toastify";
-import * as Yup from 'yup';
 import { Card, Grid } from "@mui/material";
 function PortfolioDetails() {
     const transactionData = [

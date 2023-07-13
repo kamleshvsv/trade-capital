@@ -1,5 +1,5 @@
 
-// Trade Capital React Base Styles
+// Capital Growth Trader React Base Styles
 import colors from "assets/theme/base/colors";
 
 const { info, dark } = colors;

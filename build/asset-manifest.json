@@ -1,11 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.33496b96.css",
-    "main.js": "/static/js/main.c081e459.js",
+    "main.css": "/static/css/main.c35c842f.css",
+    "main.js": "/static/js/main.c5b55747.js",
     "static/media/background-min.gif": "/static/media/background-min.b9be4677ebb591273eba.gif",
     "static/media/waves-white.svg": "/static/media/waves-white.56607573d7f27cc7c8eb151ea3d5bc67.svg",
     "static/media/curved-6.jpg": "/static/media/curved-6.71ee1d1cc8196ed2126b.jpg",
-    "static/media/white-curved.jpeg": "/static/media/white-curved.a5b7db662b0b14ab5534.jpeg",
+    "static/media/logo.jpg": "/static/media/logo.48811dfb26ae6d6dea56.jpg",
+    "static/media/banner.webp": "/static/media/banner.27f8eaa410ab92cef660.webp",
     "static/media/team-3.jpg": "/static/media/team-3.b75146da5bfdf9d8ae61.jpg",
     "static/media/qr.webp": "/static/media/qr.9084caf55b6aeb51164e.webp",
     "static/media/team-2.jpg": "/static/media/team-2.e725aef8c892cb21f262.jpg",
@@ -13,10 +14,12 @@
     "static/media/portfolio.56efdbd4.svg": "/static/media/portfolio.56efdbd4.629473e21b3813488a46e5f6ee28e4ea.svg",
     "static/media/trading.98e27021.svg": "/static/media/trading.98e27021.c194ddf4a791dcfa2ea6bd9acaed6d3a.svg",
     "static/media/logo-spotify.svg": "/static/media/logo-spotify.e83cf56c9d99a1fdf59e8deb58bbe470.svg",
-    "index.html": "/index.html"
+    "index.html": "/index.html",
+    "main.c35c842f.css.map": "/static/css/main.c35c842f.css.map",
+    "main.c5b55747.js.map": "/static/js/main.c5b55747.js.map"
   },
   "entrypoints": [
-    "static/css/main.33496b96.css",
-    "static/js/main.c081e459.js"
+    "static/css/main.c35c842f.css",
+    "static/js/main.c5b55747.js"
   ]
 }

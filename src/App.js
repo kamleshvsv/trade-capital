@@ -18,7 +18,7 @@ import routes from "routes";
 
 import { useSoftUIController, setMiniSidenav } from "context";
 
-import brand from "assets/images/logo-ct.png";
+import brand from "assets/images/logo.jpg";
 import './../src/style.css'
 
 export default function App() {
@@ -90,7 +90,7 @@ export default function App() {
             <Sidenav
               color={sidenavColor}
               brand={brand}
-              brandName="Trade Capital"
+              brandName="Capital Growth Trader"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
@@ -113,7 +113,7 @@ export default function App() {
           <Sidenav
             color={sidenavColor}
             brand={brand}
-            brandName="Trade Capital"
+            brandName=""
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}

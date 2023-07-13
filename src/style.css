@@ -300,8 +300,9 @@ transition: all 250ms ease-in-out 0s;
 /* // contact */
 
 .header-section{
-    
+    background-image: url('./assets//images/banner.webp');
     height: 18rem;
+    box-shadow: inset 0 0 0 1000px rgb(0 0 0 / 55%);
     display: flex;
     width: 100%;
     color: white !important;
@@ -400,9 +401,69 @@ h3.MuiTypography-root.MuiTypography-h3.css-1d8by8a-MuiTypography-root {
   color: #2152ff;
 }
 
+.logo-style{
+  width: 60px;
+  border-radius: .8rem;
+}
+img.MuiBox-root.css-5fzm53 {
+  width: 5rem;
+  border-radius: .8rem;
+}
+.footer-link li{
+  cursor: pointer;
+}
+.footer-link li:hover {
+  color: white;
+  font-weight: 700;
+}
+
+.footer-logo{
+  width: 120px;
+  border-radius: .8rem;
+  margin-bottom: 15px;
+}
+
+.service-list li {
+  margin-bottom:  20px;
+}
+
+.is-active-dropdown{
+  background-color: #272044 !important;
+} 
+
+.is-active-dropdown:hover{
+  background-color: #272044 !important;
+}
+.dropdown-item{
+  font-size: 14px;
+}
+.dropdown-item:hover{
+  background-color: #272044 !important;
+  color: white !important;
+}
+
+.is-active-dropdown a{
+  font-size: 14px;
+  font-weight: 500;
+  color: white !important;
+}
 
 
 @media (max-width:480px)  {
+  .MuiBox-root.css-1pecj7g {
+    margin-top: 1px !important;
+  }
+  .other-section {
+    background-color: #001122;
+    margin: 0px -15px;
+    padding: 12px;
+}
+
+  .background-image{
+    height: 50vh;
+    width: 100%;
+    background-position-y: top;
+}
 
   h3.MuiTypography-root.MuiTypography-h3.css-1d8by8a-MuiTypography-root {
     white-space:normal;
@@ -412,8 +473,12 @@ h3.MuiTypography-root.MuiTypography-h3.css-1d8by8a-MuiTypography-root {
   .add-bank-container{
     padding: 10px 0px;
   }
+.m-flex{
+  display: flow-root;
+}
+
   .bank-table{
-    display: flow-root;
+    
     overflow-x: scroll;
     width: 100%;
   }

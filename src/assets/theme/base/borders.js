@@ -1,8 +1,8 @@
 
-// Trade Capital React Base Styles
+// Capital Growth Trader React Base Styles
 import colors from "assets/theme/base/colors";
 
-// Trade Capital React Helper Functions
+// Capital Growth Trader React Helper Functions
 import pxToRem from "assets/theme/functions/pxToRem";
 
 const { grey } = colors;

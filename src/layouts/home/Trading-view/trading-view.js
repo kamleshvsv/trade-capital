@@ -39,22 +39,6 @@ const HotlistOne = () => {
               {
                 "description": "NIFTYBEES / NSE",
                 "proName": "NSE:NIFTYBEES"
-              },
-              {
-                "description": "HDFCBANK",
-                "proName": "NSE:HDFCBANK"
-              },
-              {
-                "description": "ICICIBANK",
-                "proName": "NSE:ICICIBANK"
-              },
-              {
-                "description": "YESBANK",
-                "proName": "NSE:YESBANK"
-              },
-              {
-                "description": "AXISBANK",
-                "proName": "NSE:AXISBANK"
               }
         ],
         "showSymbolLogo": true,

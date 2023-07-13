@@ -1,9 +1,9 @@
 
 
-// Trade Capital React Base Styles
+// Capital Growth Trader React Base Styles
 import colors from "assets/theme/base/colors";
 
-// Trade Capital React Helper Functions
+// Capital Growth Trader React Helper Functions
 import boxShadow from "assets/theme/functions/boxShadow";
 
 const { black, white, info, inputColors, tabs } = colors;

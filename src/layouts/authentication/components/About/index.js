@@ -20,8 +20,12 @@ function AboutUs() {
       <div className="container">
         <div className="contact-card">
           <h1 className="main-heading mb-3 text-white" >About Us</h1>
-          <p>Trade Capital, the umbrella entity which houses the broking vertical is a multidimensional conglomerate with interests in various sectors. FMCG – Hospitality – Tech – Finance Trade Capital always aims to provide value to its stakeholders. With a motto “Aap Kijiye Kaamyabi Ki Tayaari, Baki Humari Zimmedari” which captures the very essence of what Trade Capital abides by. Every day at Trade Capital is an effort to raise the bar of “Excellence”.</p>
-        </div>
+          <p>Welcome to Capital Growth Trader! 
+          <br/>
+          We're here to help you navigate the stock market with confidence. Our team of experts provides reliable and unbiased information, educational resources, and tools to empower your investment decisions. Stay updated with market analysis, access educational resources and tools, and engage with a supportive investing community. Trust Capital Growth Trader to simplify the complexities of the stock market and guide you towards successful investing.
+
+          </p>
+         </div>
       </div>
     <BasicFooter />
     </>

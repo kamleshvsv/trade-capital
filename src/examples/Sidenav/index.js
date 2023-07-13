@@ -13,7 +13,6 @@ import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
 import SidenavCollapse from "examples/Sidenav/SidenavCollapse";
-import SidenavCard from "examples/Sidenav/SidenavCard";
 
 import SidenavRoot from "examples/Sidenav/SidenavRoot";
 import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
@@ -130,7 +129,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           </SoftTypography>
         </SoftBox>
         <SoftBox component={NavLink} to="/dashboard" display="flex" alignItems="center">
-          {brand && <SoftBox component="img" src={brand} alt="Trade capital logo" width="2rem" />}
+          {brand && <SoftBox component="img" src={brand} alt="Trade Grow Capital logo" width="2rem" />}
           <SoftBox
             width={!brandName && "100%"}
             sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}

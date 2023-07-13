@@ -1,6 +1,6 @@
 /**
 =========================================================
-* Trade Capital React - v3.1.0
+* Capital Growth Trader React - v3.1.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
@@ -13,12 +13,12 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-// Trade Capital React Base Styles
+// Capital Growth Trader React Base Styles
 import colors from "assets/theme/base/colors";
 import borders from "assets/theme/base/borders";
 import boxShadows from "assets/theme/base/boxShadows";
 
-// Trade Capital React Helper Function
+// Capital Growth Trader React Helper Function
 import rgba from "assets/theme/functions/rgba";
 
 const { black, white } = colors;
