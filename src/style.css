@@ -8,6 +8,18 @@
     background-position-y: top;
 }
 
+.g-padding-10px{
+  padding: 10px !important;
+}
+.qeCode-height{
+  width: 18rem;
+  height: 18rem;
+  padding: 13px 0px 0px 0px;
+  opacity: 1;
+  border-radius: 0px !important;
+  background: transparent;
+  color: #344767;
+}
 .MuiBox-root.css-1b927zp {
     background-color: white !important;
 }
@@ -447,6 +459,75 @@ img.MuiBox-root.css-5fzm53 {
   font-weight: 500;
   color: white !important;
 }
+
+.file-upload{
+  padding: 10px;
+  display: table;
+  color: #000;
+  width: 100%;
+  display: flex;
+  font-size: 13px;
+  border: 0.0625rem solid #d2d6da;
+  border-radius: 10px;
+}
+
+
+
+.table-file-upload{
+    padding: 2px 11px;
+    display: table;
+    color: #fff9f9;
+    width: max-content;
+    display: flex;
+    font-size: 11px;
+    border: 0.0625rem solid #d2d6da;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    background-color: #17c1e8;
+    background: linear-gradient(310deg, #2152ff, #21d4fd);
+}
+
+.file-upload small{
+  display: none;
+  float: right;
+  background: green;
+  border-radius: 50px;
+  padding-left: 4px;
+  color: white;
+  height: 18px;
+  width: 18px;
+}
+
+.password-visible-icon{
+  position: relative;
+  float: right;
+  cursor: pointer;
+  color: gray;
+  top: -31px;
+  background: white;
+  right: 12px;
+}
+.password-visible-icon:hover{
+  color: rgb(63, 63, 63);
+}
+
+.file-upload h6{
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0 !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 93%;
+}
+
+
+
+input[type="file"] {
+  display: none;
+}
+
 
 
 @media (max-width:480px)  {

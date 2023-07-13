@@ -4,7 +4,7 @@ import SoftBox from "components/SoftBox";
 // Capital Growth Trader React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+
 import { ErrorMessage, Form, Formik } from "formik";
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
@@ -206,7 +206,7 @@ function PaymentDetails() {
                 </SoftBox>
             </Card>
         </SoftBox>
-    <Footer />
+    {/* <Footer /> */}
 </DashboardLayout>
   );
 }

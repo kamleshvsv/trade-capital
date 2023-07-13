@@ -1,6 +1,6 @@
 import { Card } from "@mui/material";
 import SoftBox from "components/SoftBox";
-import Footer from "examples/Footer";
+
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { useEffect } from "react";
@@ -34,7 +34,7 @@ useEffect(()=> {
                 }}>Cancel</button>
               </Card>
           </SoftBox>
-        <Footer />
+        {/* <Footer /> */}
     </DashboardLayout>
   )
 }

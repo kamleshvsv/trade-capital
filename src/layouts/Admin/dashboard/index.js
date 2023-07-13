@@ -7,14 +7,12 @@ import SoftBox from "components/SoftBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
+import AdminProfle from "./component/profile";
 
 
 
-// Dashboard layout components
-import BuildByDevelopers from "layouts/dashboard/components/BuildByDevelopers";
 
-
-function Dashboard() {
+function AdminDashboard() {
 
   return (
     <DashboardLayout>
@@ -24,7 +22,7 @@ function Dashboard() {
         <SoftBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={12}>
-              <BuildByDevelopers />
+              <AdminProfle />
             </Grid>
           </Grid>
         </SoftBox>
@@ -35,4 +33,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default AdminDashboard;

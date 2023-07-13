@@ -23,8 +23,38 @@ import DerivativeTrading from "layouts/authentication/components/Services/deriva
 import EquityTrading from "layouts/authentication/components/Services/equity";
 import PortfolioTrading from "layouts/authentication/components/Services/portfolio";
 import WealthManagement from "layouts/authentication/components/Services/wealth";
+import AdminPaymentDetails from "layouts/Admin/payment";
+import AdminBankDetails from "layouts/Admin/bank-details";
+import AdminDashboard from "layouts/Admin/dashboard";
 
 const routes = [
+  {
+    type: "admin-dashboard",
+    name: "Dashboard",
+    key: "admin-dashboard",
+    route: "/admin-dashboard",
+    icon: <Shop size="12px" />,
+    component: <AdminDashboard />,
+    noCollapse: true,
+  },
+  {
+    type: "admin-dashboard",
+    name: "Bank Details",
+    key: "admin-bank-details",
+    route: "/admin-bank-details",
+    icon: <CreditCard size="12px" />,
+    component: <AdminBankDetails />,
+    noCollapse: true,
+  },
+  {
+    type: "admin-dashboard",
+    name: "Payment Details",
+    key: "admin-payment-details",
+    route: "/admin-payment-details",
+    icon: <CreditCard size="12px" />,
+    component: <AdminPaymentDetails />,
+    noCollapse: true,
+  },
   {
     type: "collapse",
     name: "Dashboard",

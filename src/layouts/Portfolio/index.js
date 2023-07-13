@@ -4,7 +4,7 @@ import SoftBox from "components/SoftBox";
 // Capital Growth Trader React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+
 import { Card, Grid } from "@mui/material";
 function PortfolioDetails() {
     const transactionData = [
@@ -87,7 +87,7 @@ function PortfolioDetails() {
                 </SoftBox>
             </Card>
         </SoftBox>
-    <Footer />
+    {/* <Footer /> */}
 </DashboardLayout>
   );
 }

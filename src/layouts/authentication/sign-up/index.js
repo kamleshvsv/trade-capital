@@ -1,7 +1,9 @@
 
 // react-router-dom components
 import { Link } from "react-router-dom";
-
+import DoneIcon from '@mui/icons-material/Done';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 // Capital Growth Trader React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
@@ -17,6 +19,12 @@ import { useState } from "react";
 import ApiServices from './../../../API/ApiService';
 function SignUp() {
   const [isDisabled, setDisabled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
+  const [aadhar1, setAadhar1] = useState('Upload Photo')
+  const [aadhar2, setAadhar2] = useState('Upload Photo')
+  const [pan, setPan] = useState('Upload Photo')
+  const [profile, setProfile] = useState('Upload Photo')
+
   const initialValues = {
     name : "name",
     email: "kamlesh@gmail.com",
@@ -178,6 +186,7 @@ const convertToBase64 = (file) => {
                   onBlur={handleBlur}
                   value={values.mobileNo} 
                   className={`${errors.mobileNo && touched.mobileNo ? "is-invalid" : ""}`}/>
+                  
                 {errors.mobileNo && touched.mobileNo ?  <ErrorMessage name="mobileNo" component="div" className="error-message" /> : null}
               </SoftBox>
 
@@ -222,14 +231,20 @@ const convertToBase64 = (file) => {
                     Password
                   </SoftTypography>
                 </SoftBox>
-                <SoftInput 
-                  type="password" 
+                <SoftInput  
+                  type={isVisible ? 'text' : 'password'}
                   placeholder="Password"
                   name="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
                   className={`${errors.password && touched.password ? "is-invalid" : ""}`} />
+               
+                  {isVisible ? <VisibilityIcon className="password-visible-icon" onClick={() => {
+                    setIsVisible(!isVisible)
+                  }}/> :    <VisibilityOffIcon className="password-visible-icon" onClick={() => {
+                    setIsVisible(!isVisible)
+                  }}/>}
                 {errors.password && touched.password ? (
                   <ErrorMessage name="password" component="div" className="error-message"/>
                  ) : null}
@@ -241,7 +256,7 @@ const convertToBase64 = (file) => {
                   </SoftTypography>
                 </SoftBox>
                 <SoftInput 
-                  type="password" 
+                  type={isVisible ? 'text' : 'password'}
                   placeholder="Confirm Password"
                   name="confirmPassword"
                   onChange={handleChange}
@@ -260,22 +275,35 @@ const convertToBase64 = (file) => {
                     Aadhar Front Photo
                   </SoftTypography>
                 </SoftBox>
-                <SoftInput
+                <label className="file-upload">
+                  <h6>{aadhar1}</h6>
+                <input
                   type="file" 
                   name="aadharFrontPhoto" 
                   id="aadharFrontPhoto" 
+                  accept=".jpeg, .jpg"
                   onChange={ async (e) => {
       
+                    
                     const file = e.target.files[0];
+                    if(file === undefined){
+                      return
+                    }
+                    setAadhar1(file?.name || '')
                     if (file?.size/1024/1024 < 2) {
                      const base64 = await convertToBase64(file);
                      setFieldValue('aadharFrontPhoto', base64)
                     }
                     else {
+                      setAadhar1('Upload Photo')
+                      setFieldValue('aadharFrontPhoto', '')
                       toast.error('Image size must be of 2MB or less');
                     };
                   }}
                   className={`${errors.aadharFrontPhoto && touched.aadharFrontPhoto ? "is-invalid" : ""}`}/>
+                   {aadhar1 !== 'Upload Photo' ? <small><DoneIcon /></small> : "" }
+                  </label>
+                 
                 {errors.aadharFrontPhoto && touched.aadharFrontPhoto ?  <ErrorMessage name="aadharFrontPhoto" component="div" className="error-message" /> : null}
               </SoftBox>
 
@@ -285,45 +313,69 @@ const convertToBase64 = (file) => {
                     Aadhar Back Photo
                   </SoftTypography>
                 </SoftBox>
-                <SoftInput
+                <label className="file-upload">
+                <h6>{aadhar2}</h6>
+                <input
                   type="file" 
                   name="aadharBackPhoto" 
                   id="aadharBackPhoto" 
+                  accept=".jpeg, .jpg"
                   onChange={ async (e) => {
                     const file = e.target.files[0];
+                    if(file === undefined){
+                      return
+                    }
+                    setAadhar2(file?.name || '')
                     if (file?.size/1024/1024 < 2) {
                      const base64 = await convertToBase64(file);
                      setFieldValue('aadharBackPhoto', base64)
                     }
                     else {
+                      setAadhar2('Upload Photo')
+                      setFieldValue('aadharBackPhoto', '')
                       toast.error('Image size must be of 2MB or less');
                     };
                   }}
                   className={`${errors.aadharBackPhoto && touched.aadharBackPhoto ? "is-invalid" : ""}`}/>
+                  {aadhar2 !== 'Upload Photo' ? <small><DoneIcon /></small> : "" }
+                  </label>
+                  
                 {errors.aadharBackPhoto && touched.aadharBackPhoto ?  <ErrorMessage name="aadharBackPhoto" component="div" className="error-message" /> : null}
               </SoftBox>
 
               <SoftBox>
                 <SoftBox ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    PAN Photo
+                  PAN Photo
                   </SoftTypography>
                 </SoftBox>
-                <SoftInput
+                <label className="file-upload">
+                <h6>{pan}</h6>
+                <input
                   type="file" 
+                  accept=".jpeg, .jpg"
                   name="panPhoto" 
                   id="panPhoto" 
                   onChange={ async (e) => {
                     const file = e.target.files[0];
+                    if(file === undefined){
+                      return
+                    }
+                    setPan(file?.name || '')
                     if (file?.size/1024/1024 < 2) {
                      const base64 = await convertToBase64(file);
                      setFieldValue('panPhoto', base64)
                     }
                     else {
+                      setPan('Upload Photo')
+                      setFieldValue('panPhoto', '')
                       toast.error('Image size must be of 2MB or less');
                     };
                   }}
                   className={`${errors.panPhoto && touched.panPhoto ? "is-invalid" : ""}`}/>
+                  {pan !== 'Upload Photo' ? <small> <DoneIcon /> </small> : "" }
+                  </label>
+                  
                 {errors.panPhoto && touched.panPhoto ?  <ErrorMessage name="panPhoto" component="div" className="error-message" /> : null}
               </SoftBox>
 
@@ -333,21 +385,33 @@ const convertToBase64 = (file) => {
                     User Photo
                   </SoftTypography>
                 </SoftBox>
-                <SoftInput
+                <label className="file-upload">
+                <h6>{profile}</h6>
+                <input
                   type="file" 
                   name="profilePhoto" 
+                  accept=".jpeg, .jpg"
                   id="profilePhoto" 
                   onChange={ async (e) => {
                     const file = e.target.files[0];
+                    if(file === undefined){
+                      return
+                    }
+                    setProfile(file?.name || '')
                     if (file?.size/1024/1024 < 2) {
                      const base64 = await convertToBase64(file);
                      setFieldValue('profilePhoto', base64)
                     }
                     else {
+                      setProfile('Upload Photo')
+                      setFieldValue('profilePhoto', '')
                       toast.error('Image size must be of 2MB or less');
                     };
                   }}
                   className={`${errors.profilePhoto && touched.profilePhoto ? "is-invalid" : ""}`}/>
+                   {profile !== 'Upload Photo' ? <small><DoneIcon /></small> : "" }
+                  </label>
+                 
                 {errors.profilePhoto && touched.profilePhoto ?  <ErrorMessage name="profilePhoto" component="div" className="error-message" /> : null}
               </SoftBox>
               <SoftBox mt={4} mb={1}>

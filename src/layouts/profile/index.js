@@ -28,7 +28,7 @@ import SoftTypography from "components/SoftTypography";
 
 // Capital Growth Trader React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import Footer from "examples/Footer";
+
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 import ProfilesList from "examples/Lists/ProfilesList";
 import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
@@ -178,7 +178,7 @@ function Overview() {
         </Card>
       </SoftBox>
 
-      <Footer />
+      {/* <Footer /> */}
     </DashboardLayout>
   );
 }

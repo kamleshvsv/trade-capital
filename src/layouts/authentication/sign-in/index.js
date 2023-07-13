@@ -10,10 +10,13 @@ import * as Yup from 'yup';
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import ApiServices from './../../../API/ApiService'
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 function SignIn() {
   
   const navigate = useNavigate()
   const [isDisabled, setDisabled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
   const [isLoginComponent, setIsLoginComponent] = useState(true)
 
   useEffect(() => {
@@ -69,25 +72,32 @@ const forgotSchema = Yup.object().shape({
           "code" : 0,
           "password" : values.password
         }
-        ApiServices.login(req).then((res) => {
-            console.log(res, "DDDDDDDD")
-            toast.success("Login Successfull.");
-            localStorage.setItem('email', values.email)
-            navigate('/dashboard', { replace: true });
-          }).catch((err)=> {
-            toast.error(err)
-          })
-        
-        // if((values.email === 'admin@gmail.com' && values.password === '12345678') || (values.email === 'user@gmail.com' && values.password === '12345678')){
-        //   toast.success("Login Successfull.");
-        //   setTimeout(() => {
+        // ApiServices.login(req).then((res) => {
+        //     console.log(res, "DDDDDDDD")
+        //     toast.success("Login Successfull.");
         //     localStorage.setItem('email', values.email)
         //     navigate('/dashboard', { replace: true });
-        //   }, 3000);
-        // }else{
-        //   setDisabled(false)
-        //   toast.error("Please check user creadentials");
-        // }
+        //   }).catch((err)=> {
+        //     toast.error(err)
+        //   })
+        
+        if(values.email === 'admin@gmail.com' && values.password === '12345678'){
+          toast.success("Login Successfull.");
+          setTimeout(() => {
+            localStorage.setItem('email', values.email)
+            navigate('/admin-dashboard', { replace: true });
+          }, 1000);
+        }else if(values.email === 'user@gmail.com' && values.password === '12345678') {
+          toast.success("Login Successfull.");
+          setTimeout(() => {
+            localStorage.setItem('email', values.email)
+            navigate('/dashboard', { replace: true });
+          }, 1000);
+          
+          }else{
+          setDisabled(false)
+          toast.error("Please check user creadentials");
+        }
         }}
       >
         {({
@@ -123,13 +133,18 @@ const forgotSchema = Yup.object().shape({
                   </SoftTypography>
                 </SoftBox>
                 <SoftInput 
-                  type="password" 
+                 type={isVisible ? 'text' : 'password'}
                   placeholder="Password"
                   name="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
                   className={`${errors.password && touched.password ? "is-invalid" : ""}`} />
+                   {isVisible ? <VisibilityIcon className="password-visible-icon" onClick={() => {
+                    setIsVisible(!isVisible)
+                  }}/> :    <VisibilityOffIcon className="password-visible-icon" onClick={() => {
+                    setIsVisible(!isVisible)
+                  }}/>}
                 {errors.password && touched.password ? (
                   <ErrorMessage name="password" component="div" className="error-message"/>
                  ) : null}

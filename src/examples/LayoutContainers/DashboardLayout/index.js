@@ -19,14 +19,14 @@ function DashboardLayout({ children }) {
   const { pathname } = useLocation();
   const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false)
-  // useEffect(() => {
-  //   if(localStorage.getItem('email')){
-  //     setIsVisible(true)
-  //   }else{
-  //     setIsVisible(false)
-  //     navigate('/authentication/sign-in', { replace: true });
-  //   }
-  // },[])
+  useEffect(() => {
+    if(localStorage.getItem('email')){
+      setIsVisible(true)
+    }else{
+      setIsVisible(false)
+      navigate('/authentication/sign-in', { replace: true });
+    }
+  },[])
 
   useEffect(() => {
     setLayout(dispatch, "dashboard");

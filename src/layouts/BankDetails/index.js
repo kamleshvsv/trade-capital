@@ -4,7 +4,7 @@ import SoftBox from "components/SoftBox";
 // Capital Growth Trader React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+
 import { Card, Grid } from "@mui/material";
 import barcode from "./../../assets/images/qr.webp"
 
@@ -28,8 +28,8 @@ function BankDetails() {
               borderRadius="lg"
               variant="gradient"
             >
-              <SoftBox component="img" src={barcode} alt="rocket" width="100%" borderRadius="lg" height="90%"  />
-              <strong className="text-white text-center">mykotakbank@ybl</strong>
+              <SoftBox component="img" src={barcode} alt="Qr Code" borderRadius="lg" className="qeCode-height"/>
+              <strong className="text-white text-center g-padding-10px">mykotakbank@ybl</strong>
               
             </SoftBox>
           </Grid>
@@ -64,7 +64,7 @@ function BankDetails() {
         
       
       </SoftBox>
-      <Footer />
+      {/* <Footer /> */}
     </DashboardLayout>
   );
 }
