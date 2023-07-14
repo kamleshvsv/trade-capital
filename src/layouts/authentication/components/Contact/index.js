@@ -12,7 +12,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 function ContactUS() {
     const [isDisabled, setDisabled] = useState(false);
-    const [isSuccess, setIsSuccess] = useState(true);
+    const [isSuccess, setIsSuccess] = useState(false);
     
     const initialValues = {
       email: "",

@@ -130,7 +130,7 @@ const forgotSchema = Yup.object().shape({
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
-                  autocomplete="off"
+                  autoComplete="disabled"
                   className={`${errors.password && touched.password ? "is-invalid" : ""}`} />
                    {isVisible ? <VisibilityIcon className="password-visible-icon" onClick={() => {
                     setIsVisible(!isVisible)

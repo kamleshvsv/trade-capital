@@ -279,7 +279,7 @@ const convertToBase64 = (file) => {
                   type={isVisible ? 'text' : 'password'}
                   placeholder="Password"
                   name="password"
-                  autocomplete="off"
+                  autoComplete="disabled"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
@@ -304,7 +304,7 @@ const convertToBase64 = (file) => {
                   type={isVisible ? 'text' : 'password'}
                   placeholder="Confirm Password"
                   name="confirmPassword"
-                  autocomplete="off"
+                  autoComplete="disabled"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.confirmPassword}
