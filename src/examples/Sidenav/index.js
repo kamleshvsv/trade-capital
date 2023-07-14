@@ -52,12 +52,11 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       navigate('/authentication/sign-in', { replace: true });
     }
   },[])
-  // Render all the routes from the routes.js (All the visible items on the Sidenav)
   const renderRoutes = routes.map(({ type, name, icon, title, noCollapse, key, route, href }) => {
     let returnValue;
 
-    if(localStorage.getItem('email') === 'admin@gmail.com'){
-      if (type === "admin-dashboard") {
+    if(localStorage.getItem('email') === 'cgttrade06@gmail.com'){
+      if (type === "admin") {
         returnValue = href ? (
           <Link
             href={href}

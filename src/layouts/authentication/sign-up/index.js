@@ -1,14 +1,12 @@
 
-// react-router-dom components
 import { Link, useNavigate } from "react-router-dom";
 import DoneIcon from '@mui/icons-material/Done';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-// Capital Growth Trader React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
-// Images
+
 import curved9 from "assets/images/curved-images/curved-6.jpg";
 import CoverLayout from "../components/CoverLayout";
 import { ErrorMessage, Form, Formik } from "formik";
@@ -28,13 +26,13 @@ function SignUp() {
   const [formError, setFormError] = useState()
 
   const initialValues = {
-    name : "name",
-    email: "kamlesh@gmail.com",
-    mobileNo : "9876543210",
-    aadhar : "13215113211222",
-    pan : "BNZAA2318J",
-    password: "12345678",
-    confirmPassword: "12345678",
+    name : "",
+    email: "",
+    mobileNo : "",
+    aadhar : "",
+    pan : "",
+    password: "",
+    confirmPassword: "",
     aadharFrontPhoto : "",
     aadharBackPhoto : "",
     panPhoto : "",
@@ -54,7 +52,7 @@ const schema = Yup.object().shape({
   .required("Aadhar is a required field"),
   pan: Yup.string()
   .matches(
-    /^([A-Z]{5}[0-9]{4}[A-Z]{1})$/g,
+    /^([A-Za-z]{5}[0-9]{4}[A-z]{1})$/g,
           "Invalid PAN number"
         )
   .required("PAN is a required field"),
@@ -106,9 +104,6 @@ const convertToBase64 = (file) => {
       onSubmit={(values) => {
         setFormError('')
         setDisabled(true);
-    
-
-   
 
         let req = {
             "mobile": values.mobileNo,
@@ -124,14 +119,16 @@ const convertToBase64 = (file) => {
 
           ApiServices.registerUser(req).then((res) => {
             if(res.data.status_code === 200){
-              this.toast.success(res.data.data)
-              localStorage.setItem('register_user_data', JSON.stringify(req))
-              navigate('/verify-otp', { replace: true });
-              setDisabled(false)
+              if(res.data.data) {
+                console.log(res.data.data,"res")
+                localStorage.setItem('register_user_data', JSON.stringify(res.data.data))
+                navigate('/verify-otp')
+                setDisabled(false)
+              }
+            
             }
           })
           .catch((err)=> {
-            console.log(err,"err")
             if(err.response){
               if(err.response.status === 400){
                 console.log(formError,"value", err.response.data)

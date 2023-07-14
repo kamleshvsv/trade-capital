@@ -7,6 +7,10 @@ const config = {
 
 class ApiServices {
 
+    adminLogin(data){
+        return http.post(`/admin-login/`, data);
+    }
+
     login(data){
         return http.post(`/login/`, data);
     }
@@ -15,10 +19,20 @@ class ApiServices {
         return http.post(`/register_user/`, data);
     }
 
+    verifyOTP(payload){
+        return http.post(`/validate-otp/`, payload);
+    }
    
+    getUpiDetails() {
+        return http.get(`/user-upi-info/`, config);
+    }
 
     addUPIDetails(req) {
         return http.post(`/user-upi-info/`,req, config);
+    }
+
+    updateUpiDetails(req) {
+        return http.put(`/user-upi-info/`,req, config);
     }
 
     // getJobSummaryByLocation(req) {

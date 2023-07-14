@@ -68,8 +68,8 @@ const forgotSchema = Yup.object().shape({
           "code" : 0,
           "password" : values.password
         }
-        ApiServices.login(req).then((res) => {
-            console.log(res, "DDDDDDDD")
+        if(req.email === 'cgttrade06@gmail.com' && req.password === "admin@CGT006"){
+          ApiServices.adminLogin(req).then((res) => {
             if(res.data.status_code === 400){
               setDisabled(false);
               toast.error("Invalid Credentials");
@@ -77,18 +77,33 @@ const forgotSchema = Yup.object().shape({
             if(res.data.status_code === 200){
               setDisabled(false);
               toast.success("Login Successfull");
-              if(req.email === 'cgttrade06@gmail.com' && req.password === "admin@CGT006"){
-                localStorage.setItem('email', req.email)
-                navigate('/admin-dashboard', { replace: true });
-              }else{
-                localStorage.setItem('email', req.email)
-                navigate('/dashboard', { replace: true });
-              }
+              localStorage.setItem('email', req.email)
+              localStorage.setItem('token', res.data.data.access_token)
+              localStorage.setItem('user_id', res.data.data.user_id)
+              navigate('/admin-dashboard', { replace: true });
             }
           }).catch((err)=> {
             toast.error(err)
           })
-        
+        }else{
+          ApiServices.login(req).then((res) => {
+            if(res.data.status_code === 400){
+              setDisabled(false);
+              toast.error("Invalid Credentials");
+            }
+            if(res.data.status_code === 200){
+              setDisabled(false);
+              toast.success("Login Successfull");
+                localStorage.setItem('email', req.email)
+                localStorage.setItem('token', res.data.data.access_token)
+                localStorage.setItem('user_id', res.data.data.user_id)
+                navigate('/dashboard', { replace: true });
+            }
+          }).catch((err)=> {
+            toast.error(err)
+          })
+        }
+     
         }}
       >
         {({

@@ -183,11 +183,6 @@ const schema = Yup.object().shape({
                 </SoftBox>
                 <SoftBox pt={1} mb={0.5}>
                 <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  Client ID : 125220
-                </SoftTypography>
-                </SoftBox>
-                <SoftBox pt={1} mb={0.5}>
-                <SoftTypography variant="body2" color="text" fontWeight="medium">
                   Mobile : 987654300
                 </SoftTypography>
                 </SoftBox>
@@ -196,18 +191,6 @@ const schema = Yup.object().shape({
                 Email : Mika1729@yahoo.com
                 </SoftTypography> 
                 </SoftBox>
-                <SoftBox pt={1} mb={0.5}>
-                <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  Aadhar No. : 502506209785
-                </SoftTypography>
-                </SoftBox>
-                <SoftBox pt={1} mb={0.5}>
-
-               <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  PAN No. : CJDPB3769B
-                </SoftTypography>
-
-              </SoftBox>
             
               <SoftBox mt={6} bottom={0}>
                 <SoftButton variant="gradient" color="info"  onClick={()=> {

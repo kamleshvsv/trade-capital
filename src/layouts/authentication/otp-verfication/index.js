@@ -1,25 +1,33 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 import curved9 from "assets/images/curved-images/curved-6.jpg";
 import CoverLayout from "../components/CoverLayout";
+import ApiService from "API/ApiService";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from 'yup';
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 function OTPVerification() {
   const [isDisabled, setDisabled] = useState(false);
   const [email, setEmail] = useState('')
+  const navigate = useNavigate()
 
   useEffect(()=> {
-    if(localStorage.getItem('register_email')){
-       let email = localStorage.getItem('register_email')
-        setEmail(email)
+    if(localStorage.getItem('register_user_data')){
+       let data = JSON.parse(localStorage.getItem('register_user_data'))
+        setEmail(data.email)
+    }else{
+      navigate('/authentication/sign-in', { replace: true });
     }
-    
   },[])
+
+  useEffect(()=> {
+    console.log(email,"data")    
+  },[email])
 
   const initialValues = {
     email: email ? email : '',
@@ -27,12 +35,10 @@ function OTPVerification() {
 }
 
 const schema = Yup.object().shape({
-  email: Yup.string()
-    .required("Email is a required field")
-    .email("Invalid email format"),
+
   otp: Yup.string()
     .required("Otp is a required field")
-    .min(6, "OTP must be at least 6 characters")
+    .min(5, "OTP must be at least 6 characters")
     .max(6, "OTP not more then 6 characters"),
 });
 
@@ -50,22 +56,23 @@ const schema = Yup.object().shape({
       validationSchema={schema}
       onSubmit={(values) => {
         setDisabled(true);
-      
-
         let req = {
-            "email": values.email,
+            "email": email,
             "otp": values.otp,
           }
-
-        //   ApiServices.registerUser(req).then((res) => {
-        //     if(res.data.data.status_code === 200){
-        //       setDisabled(false)
-        //     }
-        //   })
-        //   .catch((err)=> {
-        //     setDisabled(false)
-        //   })
-        
+          ApiService.verifyOTP(req).then((res) => {
+            console.log(res,"Outerddd")
+            if(res.data.status_code === 200){
+              toast.success(res.data.message)
+              localStorage.setItem('email', req.email)
+              localStorage.setItem('token', res.data.data.access_token)
+              setDisabled(false)
+              navigate('/dashboard', { replace: true });
+            }
+          })
+          .catch((err)=> {
+            setDisabled(false)
+          })
         }}
       >
         {({
@@ -78,25 +85,11 @@ const schema = Yup.object().shape({
           setFieldValue
         }) => (
           <Form className="login-padding">
-        
-              <SoftBox>
-                <SoftBox ml={0.5}>
+                <SoftBox mb={2} ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    Email
+                    Check your email : {email}. You must have received an email with the OTP.
                   </SoftTypography>
                 </SoftBox>
-                <SoftInput
-                  type="email" 
-                  readOnly
-                  placeholder="Email" 
-                  name="email" 
-                  id="email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email} 
-                  className={`${errors.email && touched.email ? "is-invalid" : ""}`}/>
-                {errors.email && touched.email ?  <ErrorMessage name="email" component="div" className="error-message" /> : null}
-              </SoftBox>
               <SoftBox>
                 <SoftBox ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
@@ -120,27 +113,16 @@ const schema = Yup.object().shape({
               {isDisabled ?  (
                 <button className="soft-ui-btn" type="button" disabled>
                   <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    {/* Loading... */}
+                 
                 </button>
-              ) :  <button type="submit" className="soft-ui-btn" disabled={isDisabled} >Verfiy</button>}
+              ) :  <button type="submit" className="soft-ui-btn" disabled={isDisabled} >Submit</button>}
                
               </SoftBox>
            </Form>
         )}
     </Formik>
     <SoftBox mt={3} textAlign="center">
-              {/* <SoftTypography variant="button" color="text" fontWeight="regular">
-                
-                <SoftTypography
-                  component={Link}
-                  variant="button"
-                  color="dark"
-                  fontWeight="bold"
-                  textGradient
-                >
-                  Resent OTP
-                </SoftTypography>
-              </SoftTypography> */}
+            
             </SoftBox>
     </div>
      

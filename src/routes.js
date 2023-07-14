@@ -30,7 +30,7 @@ import OTPVerification from "layouts/authentication/otp-verfication";
 
 const routes = [
   {
-    type: "admin-dashboard",
+    type: "admin",
     name: "Dashboard",
     key: "admin-dashboard",
     route: "/admin-dashboard",
@@ -39,7 +39,7 @@ const routes = [
     noCollapse: true,
   },
   {
-    type: "admin-dashboard",
+    type: "admin",
     name: "Bank Details",
     key: "admin-bank-details",
     route: "/admin-bank-details",
@@ -48,7 +48,7 @@ const routes = [
     noCollapse: true,
   },
   {
-    type: "admin-dashboard",
+    type: "admin",
     name: "Payment Details",
     key: "admin-payment-details",
     route: "/admin-payment-details",
