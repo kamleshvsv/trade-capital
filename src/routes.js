@@ -26,6 +26,7 @@ import WealthManagement from "layouts/authentication/components/Services/wealth"
 import AdminPaymentDetails from "layouts/Admin/payment";
 import AdminBankDetails from "layouts/Admin/bank-details";
 import AdminDashboard from "layouts/Admin/dashboard";
+import OTPVerification from "layouts/authentication/otp-verfication";
 
 const routes = [
   {
@@ -127,6 +128,15 @@ const routes = [
     route: "/authentication/sign-up",
     icon: <SpaceShip size="12px" />,
     component: <SignUp />,
+    noCollapse: true,
+  },
+  {
+    type: "none",
+    name: "Verfication OTP",
+    key: "verify-otp",
+    route: "/verify-otp",
+    icon: <SpaceShip size="12px" />,
+    component: <OTPVerification />,
     noCollapse: true,
   },
   {

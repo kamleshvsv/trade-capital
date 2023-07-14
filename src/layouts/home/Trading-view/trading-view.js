@@ -8,10 +8,6 @@ const HotlistOne = () => {
     script.innerHTML = JSON.stringify({
         ...{
         symbols: [
-            {
-                "description": "SBI / NSE",
-                "proName": "NSE:SBIN"
-              },
               {
                 "description": "SBI / BSE",
                 "proName": "BSE:SBIN"
@@ -35,10 +31,6 @@ const HotlistOne = () => {
               {
                 "description": "NIFTYBEES / BSE",
                 "proName": "BSE:NIFTYBEES"
-              },
-              {
-                "description": "NIFTYBEES / NSE",
-                "proName": "NSE:NIFTYBEES"
               }
         ],
         "showSymbolLogo": true,

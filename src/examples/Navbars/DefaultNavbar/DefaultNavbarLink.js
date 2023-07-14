@@ -31,16 +31,16 @@ function DefaultNavbarLink({ icon, name, route, light }) {
       {
         name === 'features' ? (
           <div className="dropdown">
-        <a className="dropdown-toggle menu"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <a href={() => false} className="dropdown-toggle menu"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           Features
         </a>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a onClick={() => { goToService('commodity-trading')}} className="dropdown-item" >Commodity Trading</a></li>
-          <li><a  onClick={() => {goToService('currency-trading')}} className="dropdown-item" >Currency Trading</a></li>
-          <li><a onClick={() => {goToService('derivatives-trading')}} className="dropdown-item">Derivative Trading</a></li>
-          <li><a onClick={() => {goToService('equity-trading')}} className="dropdown-item">Equity Trading</a></li>
-          <li><a onClick={() => {goToService('portfolio-management')}} className="dropdown-item">Portfolio Management</a></li>
-          <li><a onClick={() => {goToService('wealth-management')}} className="dropdown-item">Wealth Management</a></li>
+          <li><a href={() => false} onClick={() => { goToService('commodity-trading')}} className="dropdown-item" >Commodity Trading</a></li>
+          <li><a href={() => false}  onClick={() => {goToService('currency-trading')}} className="dropdown-item" >Currency Trading</a></li>
+          <li><a href={() => false} onClick={() => {goToService('derivatives-trading')}} className="dropdown-item">Derivative Trading</a></li>
+          <li><a href={() => false} onClick={() => {goToService('equity-trading')}} className="dropdown-item">Equity Trading</a></li>
+          <li><a href={() => false} onClick={() => {goToService('portfolio-management')}} className="dropdown-item">Portfolio Management</a></li>
+          <li><a href={() => false} onClick={() => {goToService('wealth-management')}} className="dropdown-item">Wealth Management</a></li>
         </ul>
       </div>
         ) : (

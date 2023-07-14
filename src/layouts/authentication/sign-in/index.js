@@ -26,8 +26,8 @@ function SignIn() {
   },[])
 
   const initialValues = {
-    email: "",
-    password: ""
+    email: "cgttrade06@gmail.com",
+    password: "admin@CGT006"
 }
 
 const schema = Yup.object().shape({
@@ -49,10 +49,6 @@ const forgotSchema = Yup.object().shape({
     .email("Invalid email format"),
 });
 
-
-
-
-
   return (
     <>
     {isLoginComponent ? (
@@ -72,32 +68,27 @@ const forgotSchema = Yup.object().shape({
           "code" : 0,
           "password" : values.password
         }
-        // ApiServices.login(req).then((res) => {
-        //     console.log(res, "DDDDDDDD")
-        //     toast.success("Login Successfull.");
-        //     localStorage.setItem('email', values.email)
-        //     navigate('/dashboard', { replace: true });
-        //   }).catch((err)=> {
-        //     toast.error(err)
-        //   })
+        ApiServices.login(req).then((res) => {
+            console.log(res, "DDDDDDDD")
+            if(res.data.status_code === 400){
+              setDisabled(false);
+              toast.error("Invalid Credentials");
+            }
+            if(res.data.status_code === 200){
+              setDisabled(false);
+              toast.success("Login Successfull");
+              if(req.email === 'cgttrade06@gmail.com' && req.password === "admin@CGT006"){
+                localStorage.setItem('email', req.email)
+                navigate('/admin-dashboard', { replace: true });
+              }else{
+                localStorage.setItem('email', req.email)
+                navigate('/dashboard', { replace: true });
+              }
+            }
+          }).catch((err)=> {
+            toast.error(err)
+          })
         
-        if(values.email === 'admin@gmail.com' && values.password === '12345678'){
-          toast.success("Login Successfull.");
-          setTimeout(() => {
-            localStorage.setItem('email', values.email)
-            navigate('/admin-dashboard', { replace: true });
-          }, 1000);
-        }else if(values.email === 'user@gmail.com' && values.password === '12345678') {
-          toast.success("Login Successfull.");
-          setTimeout(() => {
-            localStorage.setItem('email', values.email)
-            navigate('/dashboard', { replace: true });
-          }, 1000);
-          
-          }else{
-          setDisabled(false)
-          toast.error("Please check user creadentials");
-        }
         }}
       >
         {({
@@ -139,6 +130,7 @@ const forgotSchema = Yup.object().shape({
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
+                  autocomplete="off"
                   className={`${errors.password && touched.password ? "is-invalid" : ""}`} />
                    {isVisible ? <VisibilityIcon className="password-visible-icon" onClick={() => {
                     setIsVisible(!isVisible)
@@ -167,7 +159,7 @@ const forgotSchema = Yup.object().shape({
                   <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     {/* Loading... */}
                 </button>
-              ) :  <button type="submit" className="soft-ui-btn" disabled={isDisabled} >Submit</button>}
+              ) :  <button type="submit" className="soft-ui-btn" disabled={isDisabled} >Sign In</button>}
                
               </SoftBox>
            </Form>

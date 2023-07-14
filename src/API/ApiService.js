@@ -1,8 +1,8 @@
 import http from "./../endpoint";
-// const token = localStorage.getItem('token')
-// const config = {
-//   headers: { Authorization: `Bearer ${token}` }
-// };
+const token = localStorage.getItem('token') || ''
+const config = {
+  headers: { Authorization: `Bearer ${token}` }
+};
 
 
 class ApiServices {
@@ -17,9 +17,9 @@ class ApiServices {
 
    
 
-    // getJobDetailsById(req) {
-    //     return http.get(`technician/job/${req.internalId}/${req.technicianId}?jobStatus=${req.jobStatus}`, config);
-    // }
+    addUPIDetails(req) {
+        return http.post(`/user-upi-info/`,req, config);
+    }
 
     // getJobSummaryByLocation(req) {
     //     return http.get(`/technician/jobSummary/location/${req.internalId}/${req.technicianId}/${req.assetLocation}`, config);

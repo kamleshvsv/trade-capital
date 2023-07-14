@@ -1,6 +1,6 @@
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DoneIcon from '@mui/icons-material/Done';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -18,12 +18,14 @@ import { useState } from "react";
 
 import ApiServices from './../../../API/ApiService';
 function SignUp() {
+  const navigate = useNavigate()
   const [isDisabled, setDisabled] = useState(false);
   const [isVisible, setIsVisible] = useState(false)
   const [aadhar1, setAadhar1] = useState('Upload Photo')
   const [aadhar2, setAadhar2] = useState('Upload Photo')
   const [pan, setPan] = useState('Upload Photo')
   const [profile, setProfile] = useState('Upload Photo')
+  const [formError, setFormError] = useState()
 
   const initialValues = {
     name : "name",
@@ -93,7 +95,7 @@ const convertToBase64 = (file) => {
 
   return (
     <CoverLayout
-      title=" Create a New Account !"
+      title=" Create a New Account"
       description=""
       image={curved9}
     >
@@ -102,14 +104,17 @@ const convertToBase64 = (file) => {
       initialValues={initialValues}
       validationSchema={schema}
       onSubmit={(values) => {
+        setFormError('')
         setDisabled(true);
-      
+    
+
+   
 
         let req = {
             "mobile": values.mobileNo,
             "email": values.email,
             "aadhar_no": values.aadhar,
-            "pan": values.aadhar,
+            "pan": values.pan,
             "password": values.password,
             "aadhar_front_photo": values.aadharFrontPhoto,
             "aadhar_back_photo": values.aadharBackPhoto,
@@ -118,10 +123,22 @@ const convertToBase64 = (file) => {
           }
 
           ApiServices.registerUser(req).then((res) => {
-            console.log(res, "DDDDDDDD")
-            setDisabled(false)
+            if(res.data.status_code === 200){
+              this.toast.success(res.data.data)
+              localStorage.setItem('register_user_data', JSON.stringify(req))
+              navigate('/verify-otp', { replace: true });
+              setDisabled(false)
+            }
           })
           .catch((err)=> {
+            console.log(err,"err")
+            if(err.response){
+              if(err.response.status === 400){
+                console.log(formError,"value", err.response.data)
+                setFormError(err.response.data)
+                
+              }
+            }
             setDisabled(false)
           })
         
@@ -165,10 +182,17 @@ const convertToBase64 = (file) => {
                   placeholder="Email" 
                   name="email" 
                   id="email" 
-                  onChange={handleChange}
+                  onChange={(e)=> {
+                    handleChange(e)
+                    const newData = { ...formError }; 
+                    newData.email = []
+                    setFormError(newData)
+                    }
+                  }
                   onBlur={handleBlur}
                   value={values.email} 
                   className={`${errors.email && touched.email ? "is-invalid" : ""}`}/>
+                                  {formError && formError.email && formError.email[0] ? <div className="error-message">{formError.email[0]}</div> : null}
                 {errors.email && touched.email ?  <ErrorMessage name="email" component="div" className="error-message" /> : null}
               </SoftBox>
               <SoftBox>
@@ -182,11 +206,17 @@ const convertToBase64 = (file) => {
                   placeholder="Mobile No." 
                   name="mobileNo" 
                   id="mobileNo" 
-                  onChange={handleChange}
+                  onChange={(e)=> {
+                    handleChange(e)
+                    const newData = { ...formError }; 
+                    newData.mobile = []
+                    setFormError(newData)
+                    }
+                  }
                   onBlur={handleBlur}
                   value={values.mobileNo} 
                   className={`${errors.mobileNo && touched.mobileNo ? "is-invalid" : ""}`}/>
-                  
+                                  {formError && formError.mobile && formError.mobile[0] ? <div className="error-message">{formError.mobile[0]}</div> : null}
                 {errors.mobileNo && touched.mobileNo ?  <ErrorMessage name="mobileNo" component="div" className="error-message" /> : null}
               </SoftBox>
 
@@ -201,11 +231,18 @@ const convertToBase64 = (file) => {
                   placeholder="Aadhar No." 
                   name="aadhar" 
                   id="aadhar" 
-                  onChange={handleChange}
+                  onChange={(e)=> {
+                    handleChange(e)
+                    const newData = { ...formError }; 
+                    newData.aadhar_no = []
+                    setFormError(newData)
+                    }
+                  }
                   onBlur={handleBlur}
                   value={values.aadhar} 
                   className={`${errors.aadhar && touched.aadhar ? "is-invalid" : ""}`}/>
                 {errors.aadhar && touched.aadhar ?  <ErrorMessage name="aadhar" component="div" className="error-message" /> : null}
+                {formError && formError.aadhar_no && formError.aadhar_no[0] ? <div className="error-message">{formError.aadhar_no[0]}</div> : null}
               </SoftBox>
 
               <SoftBox>
@@ -219,11 +256,18 @@ const convertToBase64 = (file) => {
                   placeholder="PAN No." 
                   name="pan" 
                   id="pan" 
-                  onChange={handleChange}
+                  onChange={(e)=> {
+                    handleChange(e)
+                    const newData = { ...formError }; 
+                    newData.pan = []
+                    setFormError(newData)
+                    }
+                  }
                   onBlur={handleBlur}
                   value={values.pan.toUpperCase()} 
                   className={`${errors.pan && touched.pan ? "is-invalid" : ""}`}/>
                 {errors.pan && touched.pan ?  <ErrorMessage name="pan" component="div" className="error-message" /> : null}
+                {formError && formError.pan && formError.pan[0] ? <div className="error-message">{formError.pan[0]}</div> : null}
               </SoftBox>
               <SoftBox >
                 <SoftBox ml={0.5}>
@@ -235,6 +279,7 @@ const convertToBase64 = (file) => {
                   type={isVisible ? 'text' : 'password'}
                   placeholder="Password"
                   name="password"
+                  autocomplete="off"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
@@ -259,6 +304,7 @@ const convertToBase64 = (file) => {
                   type={isVisible ? 'text' : 'password'}
                   placeholder="Confirm Password"
                   name="confirmPassword"
+                  autocomplete="off"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.confirmPassword}
@@ -420,7 +466,7 @@ const convertToBase64 = (file) => {
                   <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     {/* Loading... */}
                 </button>
-              ) :  <button type="submit" className="soft-ui-btn" disabled={isDisabled} >Sign Up</button>}
+              ) :  <button type="submit" className="soft-ui-btn" disabled={isDisabled} >Send OTP</button>}
                
               </SoftBox>
            </Form>

@@ -8,9 +8,12 @@ import BasicFooter from "layouts/authentication/components/Footer/basic-footer";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from 'yup';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 function ContactUS() {
     const [isDisabled, setDisabled] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(true);
+    
     const initialValues = {
       email: "",
       name: "",
@@ -73,12 +76,28 @@ function ContactUS() {
         </div>
         <div className="col-md-5">
           <div className="form-card">
-        
+        {isSuccess ? (
+          <div className="text-center">
+              <div >
+                <CheckCircleIcon className="success-icon"/>
+             
+              </div>
+              <br/>
+               
+              <span className="text-success"> Message Sent Successfull</span>
+              <div className="text-center">  <small className="submit-info">Leave your email and we will get back to you within 24 hours</small></div>
+             
+          </div>
+        ) : (
           <Formik
       initialValues={initialValues}
       validationSchema={schema}
       onSubmit={(values) => {
-        setDisabled(true);
+        // setDisabled(true);
+        setIsSuccess(true)
+        setTimeout(()=> {
+          setIsSuccess(false)
+        },2000)
         console.log(values,"values")
           toast.success("Message sended successfully");
         }}
@@ -159,7 +178,8 @@ function ContactUS() {
              
            </Form> 
         )}
-    </Formik>
+          </Formik>
+          )}
           </div>
       
         </div>

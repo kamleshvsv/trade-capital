@@ -4,8 +4,36 @@
     background-size: cover;
     background-repeat: no-repeat;
     height: 90vh;
+    position: relative;
     width: 100%;
     background-position-y: top;
+}
+.success-icon{
+    background: green;
+    width: 9rem !important;
+    height: 9rem !important;
+    border-radius: 7rem !important;
+}
+.text-success{
+  color: green;;
+}
+.get-started{
+  display: none;
+  position: absolute;
+  bottom: 7rem;
+  left: 33rem;
+  right: 33rem;
+  color: white;
+  box-shadow: 0rem 0.25rem 0.4375rem -0.0625rem rgb(0 0 0 / 11%), 0rem 0.125rem 0.25rem -0.0625rem rgb(0 0 0 / 7%);
+  padding: 1rem 2.5rem;
+  background-color: #17c1e8;
+  background: linear-gradient(310deg, #2152ff, #21d4fd);
+  /* padding: 7px; */
+  border: 1px solid #02023e;
+  border-radius: 41px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 .g-padding-10px{
@@ -528,9 +556,40 @@ input[type="file"] {
   display: none;
 }
 
+@media only screen and (max-width: 990px) and (min-width: 765px){
+  .get-started{
+    display: initial;
+    position: absolute;
+    bottom: 5rem;
+    padding: .5rem 0.5rem;
+    left: 18rem;
+    right: 18rem;
+  }
+  .background-image{
+    height: 60vh;
+    width: 100%;
+    background-position-y: top;
+}
+}
 
+/* @media (max-width:480px)  { */
+  @media only screen and (max-width: 764px) and (min-width: 265px){
+  .get-started{
+    display: initial;
+    text-align: center;
+    /* position: absolute; */
+    bottom: 5rem;
+    padding: .5rem 0.5rem;
+    left: 8rem;
+    font-size: 13px;
+    right: 8rem;
+  }
+  .background-image{
+    height: 60vh;
+    width: 100%;
+    background-position-y: top;
+}
 
-@media (max-width:480px)  {
   .MuiBox-root.css-1pecj7g {
     margin-top: 1px !important;
   }
@@ -540,11 +599,7 @@ input[type="file"] {
     padding: 12px;
 }
 
-  .background-image{
-    height: 50vh;
-    width: 100%;
-    background-position-y: top;
-}
+
 
   h3.MuiTypography-root.MuiTypography-h3.css-1d8by8a-MuiTypography-root {
     white-space:normal;

@@ -5,8 +5,10 @@ import trading from './../../assets/images/trading.98e27021.svg';
 import management from './../../assets/images/portfolio.56efdbd4.svg';
 import mututal from './../../assets/images/mutual.90813b23.svg';
 import BasicFooter from "layouts/authentication/components/Footer/basic-footer";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
+  const navigate = useNavigate()
   const borkingData = [{
     id:1,
     heading : 'Customer Service',
@@ -51,8 +53,13 @@ function HomePage() {
           color: "dark",
         }}
       />
-      <div className='background-image'></div>
+      <div className='background-image'>
+       <div>  <button className="get-started" onClick={()=> {
+           navigate('/authentication/sign-in', { replace: true });
+       }}>Get Started</button></div>
+      </div>
     <HotlistOne />
+  
     <div className="broking-container">
       <div className="main-heading g-container">
         <h1>Why Capital Growth Trader Broking is The Best Brokerage Firm for You ?</h1>

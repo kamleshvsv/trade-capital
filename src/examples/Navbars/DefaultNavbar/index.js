@@ -97,16 +97,16 @@ function DefaultNavbar({ transparent, light, action }) {
       >
       </Icon>
           <div className="dropdown">
-        <a className="dropdown-toggle menu"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <a href={() => false} className="dropdown-toggle menu"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           Features
         </a>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li className={`${location.pathname === '/commodity-trading' ? 'is-active-dropdown' : ''}`} ><a onClick={() => { goToService('commodity-trading')}} className="dropdown-item" >Commodity Trading</a></li>
-          <li className={`${location.pathname === '/currency-trading'  ? 'is-active-dropdown' : ''}`}><a  onClick={() => {goToService('currency-trading')}} className="dropdown-item" >Currency Trading</a></li>
-          <li className={`${location.pathname === '/derivatives-trading'  ? 'is-active-dropdown' : ''}`}><a onClick={() => {goToService('derivatives-trading')}} className="dropdown-item">Derivative Trading</a></li>
-          <li className={`${location.pathname === '/equity-trading'  ? 'is-active-dropdown' : ''}`}><a onClick={() => {goToService('equity-trading')}} className="dropdown-item">Equity Trading</a></li>
-          <li className={`${location.pathname === '/portfolio-management'  ? 'is-active-dropdown' : ''}`}><a onClick={() => {goToService('portfolio-management')}} className="dropdown-item">Portfolio Management</a></li>
-          <li className={`${location.pathname === '/wealth-management'  ? 'is-active-dropdown' : ''}`}><a onClick={() => {goToService('wealth-management')}} className="dropdown-item">Wealth Management</a></li>
+          <li className={`${location.pathname === '/commodity-trading' ? 'is-active-dropdown' : ''}`} ><a href={() => false} onClick={() => { goToService('commodity-trading')}} className="dropdown-item" >Commodity Trading</a></li>
+          <li className={`${location.pathname === '/currency-trading'  ? 'is-active-dropdown' : ''}`}><a href={() => false}  onClick={() => {goToService('currency-trading')}} className="dropdown-item" >Currency Trading</a></li>
+          <li className={`${location.pathname === '/derivatives-trading'  ? 'is-active-dropdown' : ''}`}><a href={() => false} onClick={() => {goToService('derivatives-trading')}} className="dropdown-item">Derivative Trading</a></li>
+          <li className={`${location.pathname === '/equity-trading'  ? 'is-active-dropdown' : ''}`}><a href={() => false} onClick={() => {goToService('equity-trading')}} className="dropdown-item">Equity Trading</a></li>
+          <li className={`${location.pathname === '/portfolio-management'  ? 'is-active-dropdown' : ''}`}><a href={() => false} onClick={() => {goToService('portfolio-management')}} className="dropdown-item">Portfolio Management</a></li>
+          <li className={`${location.pathname === '/wealth-management'  ? 'is-active-dropdown' : ''}`}><a href={() => false} onClick={() => {goToService('wealth-management')}} className="dropdown-item">Wealth Management</a></li>
         </ul>
       </div>
       </SoftBox>
