@@ -4,54 +4,75 @@ import SoftBox from "components/SoftBox";
 // Capital Growth Trader React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-
-import { ErrorMessage, Form, Formik } from "formik";
-import SoftTypography from "components/SoftTypography";
-import SoftInput from "components/SoftInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from 'yup';
 import { Card, Grid } from "@mui/material";
+import ApiService from "API/ApiService";
+import { formatDate } from "examples/Constant/date-formate";
 function AdminPaymentDetails() {
-    const transactionData = [
-        {
-            id : 2,
-            transactionType : 'Pay In',
-            date : '01-01-2023',
-            amount : 200
-        },
-        {
-            id : 3,
-            transactionType : 'Pay Out',
-            date : '01-02-2023',
-            amount : 2000
-        },
-        {
-            id : 5,
-            transactionType : 'Pay Out',
-            date : '02-03-2023',
-            amount : 2500
-        }
-
-    ]
-    const [isPayInDisabled, setPayInDisabled] = useState(false);
-    const [isPayOutDisabled, setPayOutDisabled] = useState(false);
-    const initialPayOutValues = {
-        payOut : ""
-     }
-
-    const payOutchema = Yup.object().shape({
-        payOut:  Yup.string()
-      .required("This field is required"),
+    const [transactionData, setTransactionData] = useState([])
+    const [fileUpload, setFileUpload] = useState(false)
+    useEffect(()=> {
+        getAllPayment()
+      },[])
+  
+  
+  
+  
+  
+      const getAllPayment = () => {
+        ApiService.getAllPay().then((res)=> {
+          if(res.status === 200){
+            setTransactionData(res.data)
+          }
+        }).catch((err)=>{
+          console.log(err)
+        })
+      }
+  
+  
+const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
     });
-    const initialPayInValues = {
-        payIn : ""
-     }
+  };
 
-    const payInchema = Yup.object().shape({
-      payIn:  Yup.string()
-      .required("This field is required"),
-    });
+  const handleFileChange = async (e ,data) => {
+    setFileUpload(true)
+    const file = e.target.files[0];
+    if(file === undefined){
+      return
+    }
+    if (file?.size/1024/1024 < 2) {
+     const base64 = await convertToBase64(file);
+     console.log(data)
+
+     let req = {
+        "id" : data.id,
+        "document" : base64
+     }
+     ApiService.paymentUploadPDF(req).then((res)=>{
+        console.log(res,"reeeeeeee")
+        getAllPayment()
+        setFileUpload(false)
+     }).catch((err)=> {
+        setFileUpload(false)
+        console.log(err)
+     })
+     
+    }
+    else {
+      toast.error('Image size must be of 2MB or less');
+    };
+}
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -76,14 +97,22 @@ function AdminPaymentDetails() {
                               {transactionData.map(function(data) {
                                 return (
                                     <tr key={data.id} >
-                                        <td className={`${data.transactionType === 'Pay In' ? "bg-payin" : "bg-payout"}`}>{data.date}</td>
-                                        <td className={`${data.transactionType === 'Pay In' ? "bg-payin" : "bg-payout"}`}>{data.amount}</td>
-                                        <td className={`${data.transactionType === 'Pay In' ? "bg-payin" : "bg-payout"}`}>{data.transactionType}</td>
-                                        <td className={`${data.transactionType === 'Pay In' ? "bg-payin" : "bg-payout"}`}>
-                                            <label className="table-file-upload"> Upload PDF
-                                                <input type="file" accept=".pdf"/>
+                                        <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{formatDate(data.created_at)}</td>
+                                        <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.amount}</td>
+                                        <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.payment_type}</td>
+                                        <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>
+                                            {data.document === null ? (
+                                                <>
+                                                    {fileUpload ? <span className="badge bg-success cursor-pointer"> Upload PDF </span> : (
+                                                        <label className="badge bg-success cursor-pointer"> Upload PDF
+                                                <input type="file" accept=".pdf" 
+                                                    onChange={e => handleFileChange(e, data)}
+                                                 />
                                             </label>
-                                           
+                                                        )}
+                                                </>
+                                               
+                                            ) : <a  href={data.document} target="_blank" className="badge bg-info cursor-pointer">View PDF</a>}
                                         </td>
                                     </tr>
                                 )})}

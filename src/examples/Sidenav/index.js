@@ -28,6 +28,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const collapseName = pathname.split("/").slice(1)[0];
   const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false)
+  const [loader, setLoader] = useState(false)
   const closeSidenav = () => setMiniSidenav(dispatch, true);
 
   useEffect(() => {
@@ -186,18 +187,35 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       <List>{renderRoutes}</List>
       <SoftBox pt={2} my={2} mx={2} mt="auto">
         <SoftBox mt={2}>
+        {!loader ? (
           <SoftButton
             component="span"
             variant="gradient"
             color={color}
             fullWidth
             onClick={()=> {
-              localStorage.clear()
-              navigate('/authentication/sign-in', { replace: true });
+              setLoader(true)
+              setTimeout(()=> {
+                setLoader(false)
+                navigate('/authentication/sign-in', { replace: true });
+                localStorage.clear()
+              },1500)
+              
             }}
           >
             Log Out
           </SoftButton>
+          ) : (
+            <SoftButton
+            component="span"
+            variant="gradient"
+            color={color}
+            fullWidth
+           >
+            Logging Out
+          </SoftButton>
+
+          )}
         </SoftBox>
       </SoftBox>
       </> ) : ""}

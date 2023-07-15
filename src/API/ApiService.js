@@ -35,6 +35,24 @@ class ApiServices {
         return http.put(`/user-upi-info/`,req, config);
     }
 
+    getAllUsers() {
+        return http.get(`/all-user-list/`, config);
+    }
+
+    payment(data){
+        return http.post(`/payment-in-out/`,data, config);
+    }
+
+    getAllPay(){
+        return http.get(`/payment-in-out/`, config);
+    }
+
+    paymentUploadPDF(data){
+        return http.put(`/payment-in-out/`,data, config);
+    }
+
+    
+
     // getJobSummaryByLocation(req) {
     //     return http.get(`/technician/jobSummary/location/${req.internalId}/${req.technicianId}/${req.assetLocation}`, config);
     // }

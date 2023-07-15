@@ -2,7 +2,7 @@
 import Dashboard from "layouts/dashboard";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
-
+import Basket from  "examples/Icons/Basket";
 
 import Shop from "examples/Icons/Shop";
 import Document from "examples/Icons/Document";
@@ -27,6 +27,7 @@ import AdminPaymentDetails from "layouts/Admin/payment";
 import AdminBankDetails from "layouts/Admin/bank-details";
 import AdminDashboard from "layouts/Admin/dashboard";
 import OTPVerification from "layouts/authentication/otp-verfication";
+import UserList from "layouts/Admin/Users/users";
 
 const routes = [
   {
@@ -45,6 +46,15 @@ const routes = [
     route: "/admin-bank-details",
     icon: <CreditCard size="12px" />,
     component: <AdminBankDetails />,
+    noCollapse: true,
+  },
+  {
+    type: "admin",
+    name: "Users",
+    key: "users",
+    route: "/users",
+    icon: <SpaceShip size="12px" />,
+    component: <UserList />,
     noCollapse: true,
   },
   {

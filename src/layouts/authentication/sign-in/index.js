@@ -21,7 +21,12 @@ function SignIn() {
 
   useEffect(() => {
     if(localStorage.getItem('email')){
-      navigate('/dashboard', { replace: true });
+      let email = localStorage.getItem('email')
+      if(email === 'cgttrade06@gmail.com'){
+        navigate('/admin-dashboard', { replace: true });
+      }else{
+        navigate('/dashboard', { replace: true });
+      }
     }
   },[])
 

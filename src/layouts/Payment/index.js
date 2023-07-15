@@ -8,32 +8,14 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { ErrorMessage, Form, Formik } from "formik";
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from 'yup';
 import { Card, Grid } from "@mui/material";
+import ApiService from "API/ApiService";
+import { formatDate } from "examples/Constant/date-formate";
 function PaymentDetails() {
-    const transactionData = [
-        {
-            id : 2,
-            transactionType : 'Pay In',
-            date : '01-01-2023',
-            amount : 200
-        },
-        {
-            id : 3,
-            transactionType : 'Pay Out',
-            date : '01-02-2023',
-            amount : 2000
-        },
-        {
-            id : 5,
-            transactionType : 'Pay Out',
-            date : '02-03-2023',
-            amount : 2500
-        }
-
-    ]
+    const [transactionData, setTransactionData] = useState([])
     const [isPayInDisabled, setPayInDisabled] = useState(false);
     const [isPayOutDisabled, setPayOutDisabled] = useState(false);
     const initialPayOutValues = {
@@ -52,6 +34,28 @@ function PaymentDetails() {
       payIn:  Yup.string()
       .required("This field is required"),
     });
+
+    useEffect(()=> {
+      getAllPayment()
+    },[])
+
+
+
+
+
+    const getAllPayment = () => {
+      let req = {
+        payin : 'payin',
+        payout : 'payout'
+      }
+      ApiService.getAllPay().then((res)=> {
+        if(res.status === 200){
+          setTransactionData(res.data)
+        }
+      }).catch((err)=>{
+        console.log(err)
+      })
+    }
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -67,11 +71,27 @@ function PaymentDetails() {
                             <Formik
                                 initialValues={initialPayInValues}
                                 validationSchema={payInchema}
-                                onSubmit={(values) => {
-                                    setPayInDisabled(true);
-                                  console.log(values,"values")
-                                    toast.success("Message sended successfully");
+                                onSubmit={(values, { resetForm }) => {
+                                  setPayInDisabled(true);
+                                  let req = { 
+                                    "payment_type":"payin",
+                                    "amount":values.payIn 
+                                    }
+                                    ApiService.payment(req).then((result)=> {
+                                      setPayInDisabled(false);
+                                      if(result.status === 201){
+                                        toast.success("Pay in successfully");
+                                        resetForm();
+                                        getAllPayment()
+                                      }
+                                    }).catch((err)=>{
+                                      setPayInDisabled(false);
+                                      console.log(err)
+                                    })
+
+                                 
                                   }}
+                              
                                 >
                             {({
                               values,
@@ -79,7 +99,7 @@ function PaymentDetails() {
                               touched,
                               handleChange,
                               handleBlur,
-                              handleSubmit,
+                              handleSubmit
                             }) => (
                                 <Form>
                                     <SoftBox mb={1}>
@@ -125,10 +145,23 @@ function PaymentDetails() {
                             <Formik
                                 initialValues={initialPayOutValues}
                                 validationSchema={payOutchema}
-                                onSubmit={(values) => {
+                                onSubmit={(values, {resetForm}) => {
                                   setPayOutDisabled(true);
-                                  console.log(values,"values")
-                                    toast.success("Message sended successfully");
+                                  let req = { 
+                                    "payment_type":"payout",
+                                    "amount":values.payOut 
+                                    }
+                                    ApiService.payment(req).then((result)=> {
+                                      setPayOutDisabled(false);
+                                      if(result.status === 201){
+                                        toast.success("Pay Out successfully");
+                                        resetForm();
+                                        getAllPayment()
+                                      }
+                                    }).catch((err)=>{
+                                      setPayOutDisabled(false);
+                                      console.log(err)
+                                    })
                                   }}
                                 >
                             {({
@@ -194,9 +227,9 @@ function PaymentDetails() {
                               {transactionData.map(function(data) {
                                 return (
                                     <tr key={data.id} >
-                                        <td className={`${data.transactionType === 'Pay In' ? "bg-payin" : "bg-payout"}`}>{data.date}</td>
-                                        <td className={`${data.transactionType === 'Pay In' ? "bg-payin" : "bg-payout"}`}>{data.amount}</td>
-                                        <td className={`${data.transactionType === 'Pay In' ? "bg-payin" : "bg-payout"}`}>{data.transactionType}</td>
+                                        <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{formatDate(data.created_at)}</td>
+                                        <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>₹ {data.amount || 0}</td>
+                                        <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.payment_type === 'payin' ? 'Pay In' : 'Pay Out'}</td>
                                     </tr>
                                 )})}
                               </tbody>

@@ -108,6 +108,7 @@ const convertToBase64 = (file) => {
         let req = {
             "mobile": values.mobileNo,
             "email": values.email,
+            "name" :values.name,
             "aadhar_no": values.aadhar,
             "pan": values.pan,
             "password": values.password,

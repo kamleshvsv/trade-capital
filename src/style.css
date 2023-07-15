@@ -39,6 +39,10 @@
 .g-padding-10px{
   padding: 10px !important;
 }
+.user-profile-tb{
+  width : 40px;
+  border-radius: 4px;
+}
 .qeCode-height{
   width: 18rem;
   height: 18rem;
