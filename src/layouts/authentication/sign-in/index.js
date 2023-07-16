@@ -31,8 +31,8 @@ function SignIn() {
   },[])
 
   const initialValues = {
-    email: "cgttrade06@gmail.com",
-    password: "admin@CGT006"
+    email: "",
+    password: ""
 }
 
 const schema = Yup.object().shape({
@@ -164,9 +164,11 @@ const forgotSchema = Yup.object().shape({
               <SoftBox display="flex" alignItems="center">
                 <SoftTypography
                   variant="button"
+                  className="text-primary"
                   fontWeight="regular"
                   sx={{ cursor: "pointer", userSelect: "none" }}
                   onClick={()=> {
+                    setDisabled(false)
                     setIsLoginComponent(!isLoginComponent)
                   }}
                 >
@@ -214,9 +216,20 @@ const forgotSchema = Yup.object().shape({
       validationSchema={forgotSchema}
       onSubmit={(values) => {
         setDisabled(true);
-   
-          
-        }}
+        let req = {
+          email : values.email
+        }
+        ApiServices.forgotPassword(req).then((res)=> {
+          if(res.status === 200){
+            toast.success( `Password sended on your register email : ${req.email}`)
+            setDisabled(false);
+            navigate('/')
+          }
+        }).catch((err)=> {
+          toast.error(err)
+          console.log(err)
+        })
+      }}
       >
         {({
           values,
@@ -259,6 +272,7 @@ const forgotSchema = Yup.object().shape({
     <SoftBox mt={3} textAlign="center">
     <SoftTypography variant="button" color="text" fontWeight="regular"     >
    Back to <strong className="cursor-pointer" onClick={()=> {
+    setDisabled(false)
   setIsLoginComponent(!isLoginComponent)
 }}>Sign In ?{" "}</strong>
   </SoftTypography>

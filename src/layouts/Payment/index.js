@@ -14,6 +14,7 @@ import * as Yup from 'yup';
 import { Card, Grid } from "@mui/material";
 import ApiService from "API/ApiService";
 import { formatDate } from "examples/Constant/date-formate";
+import { useNavigate } from "react-router-dom";
 function PaymentDetails() {
     const [transactionData, setTransactionData] = useState([])
     const [isPayInDisabled, setPayInDisabled] = useState(false);
@@ -39,6 +40,15 @@ function PaymentDetails() {
       getAllPayment()
     },[])
 
+    const navigate = useNavigate()
+    useEffect(() => {
+      if(localStorage.getItem('email')){
+        let email = localStorage.getItem('email')
+        if(email === 'cgttrade06@gmail.com'){
+          navigate('/authentication/sign-in', { replace: true });
+        }
+      }
+    },[])
 
 
 
@@ -221,6 +231,7 @@ function PaymentDetails() {
                                       <th>Date</th>
                                       <th>Amount</th>
                                       <th>Type</th>
+                                      <th>Status</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -230,6 +241,8 @@ function PaymentDetails() {
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{formatDate(data.created_at)}</td>
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>₹ {data.amount || 0}</td>
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.payment_type === 'payin' ? 'Pay In' : 'Pay Out'}</td>
+                                        <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.document != null ? <span className="badge bg-success"  >Approved</span> :  <span className="badge bg-secondary"  >Pending</span>}</td>
+                                       
                                     </tr>
                                 )})}
                               </tbody>

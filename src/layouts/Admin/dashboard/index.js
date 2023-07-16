@@ -8,11 +8,22 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 import AdminProfle from "./component/profile";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 
 
 function AdminDashboard() {
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(localStorage.getItem('email')){
+      let email = localStorage.getItem('email')
+      if(email !== 'cgttrade06@gmail.com'){
+        navigate('/authentication/sign-in', { replace: true });
+      }
+    }
+  },[])
 
   return (
     <DashboardLayout>

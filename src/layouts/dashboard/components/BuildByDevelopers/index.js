@@ -12,8 +12,10 @@ import { useEffect, useState } from "react";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from 'yup';
 import SoftInput from "components/SoftInput";
+import { useNavigate } from "react-router-dom";
 
 function BuildByDevelopers() {
+  const navigate = useNavigate()
   const [isEditable, setIsEditable] = useState(false)
   const [isDisabled, setDisabled] = useState(false);
   // const [userData, setUserData] = useState({})
@@ -45,6 +47,10 @@ const schema = Yup.object().shape({
     mobile: Yup.string()
     .required("This field is required"),
 });
+
+const passwordChange = () => {
+  navigate('/change-password', { replace: true });
+}
 
   return (
     <Card>
@@ -213,10 +219,18 @@ const schema = Yup.object().shape({
 
               </SoftBox>
             
-              <SoftBox mt={6} bottom={0}>
+              <SoftBox mt={2} bottom={0}>
                 <SoftButton variant="gradient" color="info"  onClick={()=> {
                   setIsEditable(true)
                 }}>Edit</SoftButton>
+              </SoftBox>
+
+              <hr />
+              <SoftBox mt={2} bottom={0}>
+              <SoftTypography variant="body2" color="text" fontWeight="medium">
+                  Change Password
+                  <span className="float-right cursor-pointer text-primary" onClick={passwordChange}>Change</span>
+                </SoftTypography> 
               </SoftBox>
             </SoftBox>
           </Grid>

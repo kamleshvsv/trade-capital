@@ -9,6 +9,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from 'yup';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ApiService from "API/ApiService";
 
 function ContactUS() {
     const [isDisabled, setDisabled] = useState(false);
@@ -51,28 +52,8 @@ function ContactUS() {
           <p>Trade with low brokerage charges and access a wide range of facilities by choosing one of the best broking companies in India. If you are unsatisfied with your broker's resolution, you also have the option to file a complaint on the SEBI Scores website.</p>
           <p>Customer Support: <a href="mailto:cgttrade06@gmail.com" title="glorythemes">cgttrade06@gmail.com</a></p>
           <p>Conact Number :  <a href="tel:+919039441976" title="glorythemes">+919039441976</a></p>
-          <p>Address: Near Himayat Nagar, Hyderabad, Andhra Pradesh - 500029</p>
-          <div className="text-white">
-
-          {/* <SoftBox display="flex" >
-                  <SoftBox mr={3} color="secondary">
-                    <FacebookIcon fontSize="small" />
-                  </SoftBox>
-                  <SoftBox mr={3} color="secondary">
-                    <TwitterIcon fontSize="small" />
-                  </SoftBox>
-                  <SoftBox mr={3} color="secondary">
-                    <InstagramIcon fontSize="small" />
-                  </SoftBox>
-                  <SoftBox mr={3} color="secondary">
-                    <PinterestIcon fontSize="small" />
-                  </SoftBox>
-                  <SoftBox color="secondary">
-                    <LinkedInIcon fontSize="small" />
-                  </SoftBox>
-              </SoftBox> */}
-
-          </div>
+          {/* <p>Address: Near Himayat Nagar, Hyderabad, Andhra Pradesh - 500029</p> */}
+        
         </div>
         <div className="col-md-5">
           <div className="form-card">
@@ -92,14 +73,27 @@ function ContactUS() {
           <Formik
       initialValues={initialValues}
       validationSchema={schema}
-      onSubmit={(values) => {
-        // setDisabled(true);
-        setIsSuccess(true)
-        setTimeout(()=> {
-          setIsSuccess(false)
-        },2000)
-        console.log(values,"values")
-          toast.success("Message sended successfully");
+      onSubmit={(values , {resetForm}) => {
+        setDisabled(true);
+      
+        let req = {
+          name : values.name,
+          email : values.email,
+          message : values.message,
+        }
+        ApiService.contactInfo(req).then((res)=> {
+          setDisabled(false);
+          if(res.status === 200){
+            toast.success("Contact info submitted successfully!");
+            resetForm()
+            setIsSuccess(true)
+            setTimeout(()=> {
+              setIsSuccess(false)
+            },2000)
+          }
+        }).catch((err)=> {
+          setDisabled(false);
+        })
         }}
       >
         {({

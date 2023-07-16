@@ -14,6 +14,7 @@ import SoftInput from "components/SoftInput";
 import SoftTypography from "components/SoftTypography";
 import ApiService from "API/ApiService";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AdminBankDetails() {
   const [upiData,
@@ -45,6 +46,16 @@ function AdminBankDetails() {
     getAll()
   }, [])
 
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(localStorage.getItem('email')){
+      let email = localStorage.getItem('email')
+      if(email !== 'cgttrade06@gmail.com'){
+        navigate('/authentication/sign-in', { replace: true });
+      }
+    }
+  },[])
+
   const getAll = () => {
     setMainLoader(true)
     ApiService
@@ -62,6 +73,7 @@ function AdminBankDetails() {
         }
       })
       .catch((err) => {
+        setMainLoader(false)
         console.log(err, "result")
       });
   }

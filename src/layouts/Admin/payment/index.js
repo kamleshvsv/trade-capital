@@ -10,23 +10,40 @@ import * as Yup from 'yup';
 import { Card, Grid } from "@mui/material";
 import ApiService from "API/ApiService";
 import { formatDate } from "examples/Constant/date-formate";
+import { useNavigate } from "react-router-dom";
 function AdminPaymentDetails() {
     const [transactionData, setTransactionData] = useState([])
     const [fileUpload, setFileUpload] = useState(false)
+    const [isMainLoader,
+      setMainLoader] = useState(true);
     useEffect(()=> {
         getAllPayment()
       },[])
+
+      const navigate = useNavigate()
+  useEffect(() => {
+    if(localStorage.getItem('email')){
+      let email = localStorage.getItem('email')
+      if(email !== 'cgttrade06@gmail.com'){
+        navigate('/authentication/sign-in', { replace: true });
+      }
+    }
+  },[])
   
   
   
   
   
       const getAllPayment = () => {
+        setMainLoader(true)
         ApiService.getAllPay().then((res)=> {
           if(res.status === 200){
+          
             setTransactionData(res.data)
           }
+          setMainLoader(false)
         }).catch((err)=>{
+          setMainLoader(false)
           console.log(err)
         })
       }
@@ -78,7 +95,22 @@ const convertToBase64 = (file) => {
       <DashboardNavbar />
         <SoftBox py={3}>
             <Card>
-                <SoftBox p={2}>
+            {isMainLoader ? (
+            <div class="d-flex justify-content-center p-3">
+                  <div>
+                    <div className="spinner-grow text-success" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-danger" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-warning" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+          ) : (
+            <SoftBox p={2}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={12} >
                             <div className="text-center">
@@ -121,6 +153,8 @@ const convertToBase64 = (file) => {
                         </Grid>
                     </Grid>
                 </SoftBox>
+            )}
+               
             </Card>
         </SoftBox>
     {/* <Footer /> */}

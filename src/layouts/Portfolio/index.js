@@ -6,34 +6,40 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 import { Card, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import ApiService from "API/ApiService";
+import { formatDate } from "examples/Constant/date-formate";
 function PortfolioDetails() {
-    const transactionData = [
-        {
-            id : 2,
-            clientId : '1250002',
-            date : '01-01-2023',
-            pdfLink : 'https://firebasestorage.googleapis.com/v0/b/website-8cd0a.appspot.com/o/pdfFiles%2FPanchal%203.pdf?alt=media&token=340cf9c0-0247-4e79-986d-69087fafa34f'
-        },
-        {
-            id : 3,
-            clientId : '125665',
-            date : '01-02-2023',
-            pdfLink : 'https://firebasestorage.googleapis.com/v0/b/website-8cd0a.appspot.com/o/pdfFiles%2FPanchal%203.pdf?alt=media&token=340cf9c0-0247-4e79-986d-69087fafa34f'
-        },
-        {
-            id : 5,
-            clientId : '255522',
-            date : '02-03-2023',
-            pdfLink : 'https://firebasestorage.googleapis.com/v0/b/website-8cd0a.appspot.com/o/pdfFiles%2FPanchal%203.pdf?alt=media&token=340cf9c0-0247-4e79-986d-69087fafa34f'
-        },
-        {
-            id : 5,
-            clientId : '556121',
-            date : '02-03-2023',
-            pdfLink : ''  
-         }
+    const [isMainLoader,
+        setMainLoader] = useState(true);
+    const [portFolioData, setPortfolioData] = useState([])
+    const navigate = useNavigate()
+    useEffect(() => {
+        getAll()
+      if(localStorage.getItem('email')){
+        let email = localStorage.getItem('email')
+        if(email === 'cgttrade06@gmail.com'){
+          navigate('/authentication/sign-in', { replace: true });
+        }
+      }
+    },[])
 
-    ]
+    const getAll = () => {
+        setMainLoader(true)
+        ApiService.getAllPortfolio()
+        .then((result) => {
+          console.log(result, "result")
+          if (result.status === 200) {
+            setMainLoader(false)
+            setPortfolioData(result.data)
+          }
+        })
+        .catch((err) => {
+            setMainLoader(false)
+          console.log(err, "result")
+        });
+    }
 
     const pdfDownlaod = (url, clientId) => {
         fetch(url).then(response => {
@@ -52,11 +58,26 @@ function PortfolioDetails() {
       <DashboardNavbar />
         <SoftBox py={3}>
             <Card>
-                <SoftBox p={2}>
+            {isMainLoader ? (
+            <div class="d-flex justify-content-center p-3">
+                  <div>
+                    <div className="spinner-grow text-success" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-danger" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-warning" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+          ) : (
+            <SoftBox p={2}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={12} >
                             <div className="text-center">
-                              <strong>Transaction History</strong>
+                              <strong>Portfolio Summary</strong>
                             </div>
                             <table className="table table-striped bank-table table-responsive">
                               <thead>
@@ -66,25 +87,31 @@ function PortfolioDetails() {
                                       <th>PDF</th>
                                   </tr>
                               </thead>
+                              {portFolioData && portFolioData.length > 0 ? (
                               <tbody>
-                              {transactionData.map(function(data) {
+                              {portFolioData.map(function(data) {
                                 return (
                                     <tr key={data.id} >
-                                        <td >{data.date}</td>
+                                        <td >{formatDate(data.update_at)}</td>
                                         <td >{data.clientId}</td>
-                                        <td >{data.pdfLink ? <span className="badge bg-info cursor-pointer" onClick={(e) => {
+                                        <td >{data.document != null ? <span className="badge bg-info cursor-pointer" onClick={(e) => {
                                             e.preventDefault()
                                             pdfDownlaod(data.pdfLink, data.clientId )
 
-                                        }} >Download PDF</span> : <span className="badge bg-dark not-allowed">Download PDF</span>}</td>
+                                        }} >Download PDF</span> : null}</td>
                                        
                                     </tr>
                                 )})}
                               </tbody>
+                              ) : null}
                             </table>
+
+                            {portFolioData && portFolioData.length === 0 ? <div className="text-center p-3">No record found</div> : null }
                         </Grid>
                     </Grid>
                 </SoftBox>
+            )}
+               
             </Card>
         </SoftBox>
     {/* <Footer /> */}

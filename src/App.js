@@ -60,6 +60,7 @@ export default function App() {
     document.body.setAttribute("dir", direction);
   }, [direction]);
 
+
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;

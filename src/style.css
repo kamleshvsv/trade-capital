@@ -8,6 +8,9 @@
     width: 100%;
     background-position-y: top;
 }
+.float-right{
+  float: right;
+}
 .success-icon{
     background: green;
     width: 9rem !important;

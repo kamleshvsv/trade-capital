@@ -8,6 +8,7 @@ import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {Card, Grid} from "@mui/material";
 import ApiService from "API/ApiService";
+import { useNavigate } from "react-router-dom";
 function UserList() {
   const [mainLoader,
     setMainLoader] = useState(true)
@@ -17,6 +18,16 @@ function UserList() {
   useEffect(() => {
     AllUsers()
   }, [])
+
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(localStorage.getItem('email')){
+      let email = localStorage.getItem('email')
+      if(email !== 'cgttrade06@gmail.com'){
+        navigate('/authentication/sign-in', { replace: true });
+      }
+    }
+  },[])
 
   const AllUsers = () => {
     setMainLoader(true)

@@ -28,6 +28,8 @@ import AdminBankDetails from "layouts/Admin/bank-details";
 import AdminDashboard from "layouts/Admin/dashboard";
 import OTPVerification from "layouts/authentication/otp-verfication";
 import UserList from "layouts/Admin/Users/users";
+import Settings from "examples/Icons/Settings";
+import ChangePassword from "layouts/Password";
 
 const routes = [
   {
@@ -84,15 +86,15 @@ const routes = [
     component: <BankDetails />,
     noCollapse: true,
   },
-  {
-    type: "collapse",
-    name: "Add Bank Details",
-    key: "add-bank-details",
-    route: "/add-bank-details",
-    icon: <Cube size="12px" />,
-    component: <AddBankDetails />,
-    noCollapse: true,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Add Bank Details",
+  //   key: "add-bank-details",
+  //   route: "/add-bank-details",
+  //   icon: <Cube size="12px" />,
+  //   component: <AddBankDetails />,
+  //   noCollapse: true,
+  // },
   {
     type: "collapse",
     name: "Payment",
@@ -219,6 +221,15 @@ const routes = [
     route: "/wealth-management",
     icon: <SpaceShip size="12px" />,
     component: <WealthManagement />,
+    noCollapse: true,
+  },
+  {
+    type: "none",
+    name: "Change Password",
+    key: "change-password",
+    route: "/change-password",
+    icon: <Settings size="12px" />,
+    component: <ChangePassword />,
     noCollapse: true,
   },
 ];

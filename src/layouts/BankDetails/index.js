@@ -9,6 +9,7 @@ import { Card, Grid } from "@mui/material";
 import barcode from "./../../assets/images/qr.webp"
 import { useEffect, useState } from "react";
 import ApiService from "API/ApiService";
+import { useNavigate } from "react-router-dom";
 
 
 function BankDetails() {
@@ -19,6 +20,16 @@ function BankDetails() {
   useEffect(() => {
     getAll()
   }, [])
+
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(localStorage.getItem('email')){
+      let email = localStorage.getItem('email')
+      if(email === 'cgttrade06@gmail.com'){
+        navigate('/authentication/sign-in', { replace: true });
+      }
+    }
+  },[])
 
   const getAll = () => {
     setMainLoader(true)

@@ -12,9 +12,20 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Dashboard layout components
 import BuildByDevelopers from "layouts/dashboard/components/BuildByDevelopers";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function Dashboard() {
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(localStorage.getItem('email')){
+      let email = localStorage.getItem('email')
+      if(email === 'cgttrade06@gmail.com'){
+        navigate('/authentication/sign-in', { replace: true });
+      }
+    }
+  },[])
 
   return (
     <DashboardLayout>
