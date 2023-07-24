@@ -23,7 +23,7 @@ function SignIn() {
     if(localStorage.getItem('email')){
       let email = localStorage.getItem('email')
       if(email === 'cgttrade06@gmail.com'){
-        navigate('/admin-dashboard', { replace: true });
+        navigate('/admin-bank-details', { replace: true });
       }else{
         navigate('/dashboard', { replace: true });
       }
@@ -85,7 +85,7 @@ const forgotSchema = Yup.object().shape({
               localStorage.setItem('email', req.email)
               localStorage.setItem('token', res.data.data.access_token)
               localStorage.setItem('user_id', res.data.data.user_id)
-              navigate('/admin-dashboard', { replace: true });
+              navigate('/admin-bank-details', { replace: true });
             }
           }).catch((err)=> {
             setDisabled(false);

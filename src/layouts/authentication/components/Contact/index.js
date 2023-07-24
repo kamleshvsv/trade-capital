@@ -75,7 +75,6 @@ function ContactUS() {
       validationSchema={schema}
       onSubmit={(values , {resetForm}) => {
         setDisabled(true);
-      
         let req = {
           name : values.name,
           email : values.email,

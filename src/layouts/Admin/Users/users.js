@@ -92,9 +92,7 @@ function UserList() {
                             return (
                               <tr key={data.id}>
                                 <td
-                                  className={`${data.is_superuser
-                                  ? "bg-payin"
-                                  : "bg-payout"}`}><img
+                                 ><img
                                   src={data.user_photo}
                                   onError={({currentTarget}) => {
                                 currentTarget.onerror = null;
@@ -105,38 +103,24 @@ function UserList() {
                                   className="user-profile-tb"/>
                                 </td>
                                 <td
-                                  className={`${data.is_superuser
-                                  ? "bg-payin"
-                                  : "bg-payout"}`}>{data
+                                 >{data
                                     ?.client_code}</td>
                                 <td
-                                  className={`${data.is_superuser
-                                  ? "bg-payin"
-                                  : "bg-payout"}`}>{data
+                                 >{data
                                     ?.name}</td>
                                 <td
-                                  className={`${data.is_superuser
-                                  ? "bg-payin"
-                                  : "bg-payout"}`}>{data
+                                 >{data
                                     ?.email}</td>
                                 <td
-                                  className={`${data.is_superuser
-                                  ? "bg-payin"
-                                  : "bg-payout"}`}>{data
+                                 >{data
                                     ?.mobile}</td>
                                 <td
-                                  className={`${data.is_superuser
-                                  ? "bg-payin"
-                                  : "bg-payout"}`}>{data
+                                 >{data
                                     ?.pan}</td>
                                 <td
-                                  className={`${data.is_superuser
-                                  ? "bg-payin"
-                                  : "bg-payout"}`}>{data
+                                 >{data
                                     ?.aadhar_no}</td>
-                                <td  className={`${data.is_superuser
-                                  ? "bg-payin"
-                                  : "bg-payout"}`}>
+                                <td >
                                 <span className={`${data.is_superuser
                                   ? "badge bg-danger cursor-pointer"
                                   : "badge bg-success cursor-pointer"}`} >{data.is_superuser ? 'Inactive' : 'Active'}</span>

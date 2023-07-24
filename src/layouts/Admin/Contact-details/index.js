@@ -91,21 +91,21 @@ function ContactDetails() {
                                 <td
                                   className={`${data.is_superuser
                                   ? "bg-payin"
-                                  : "bg-payout"}`}>{formatDate(data.created_at)}</td>
+                                  : "bg-prime"}`}>{formatDate(data.created_at)}</td>
                                 <td
                                   className={`${data.is_superuser
                                   ? "bg-payin"
-                                  : "bg-payout"}`}>{data
+                                  : "bg-prime"}`}>{data
                                     ?.name}</td>
                                 <td
                                   className={`${data.is_superuser
                                   ? "bg-payin"
-                                  : "bg-payout"}`}>{data
+                                  : "bg-prime"}`}>{data
                                     ?.email}</td>
                                 <td
                                   className={`${data.is_superuser
                                   ? "bg-payin"
-                                  : "bg-payout"}`}>{data
+                                  : "bg-prime"}`}>{data
                                     ?.message}</td>
                              
                               </tr>

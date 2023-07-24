@@ -33,15 +33,15 @@ import ChangePassword from "layouts/Password";
 import ContactDetails from "layouts/Admin/Contact-details";
 
 const routes = [
-  {
-    type: "admin",
-    name: "Dashboard",
-    key: "admin-dashboard",
-    route: "/admin-dashboard",
-    icon: <Shop size="12px" />,
-    component: <AdminDashboard />,
-    noCollapse: true,
-  },
+  // {
+  //   type: "admin",
+  //   name: "Dashboard",
+  //   key: "admin-dashboard",
+  //   route: "/admin-dashboard",
+  //   icon: <Shop size="12px" />,
+  //   component: <AdminDashboard />,
+  //   noCollapse: true,
+  // },
   {
     type: "admin",
     name: "Bank Details",

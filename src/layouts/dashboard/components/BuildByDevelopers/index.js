@@ -23,7 +23,7 @@ function BuildByDevelopers() {
   
   const [isDisabled, setDisabled] = useState(false);
   const [userData, setUserData] = useState()
-
+  const [profile, setProfile] = useState('Upload Photo')
   useEffect(()=> {
    getProfileDetails()
   },[])
@@ -34,6 +34,7 @@ function BuildByDevelopers() {
     ApiService.getUserInformation(email).then((res)=> {
       setIsMainLoader(false)
       if(res.status === 200){
+        setIsEditable(false)
         setUserData(res.data.data)
       }
     }).catch((err)=> {
@@ -50,12 +51,13 @@ function BuildByDevelopers() {
 
  
   const initialValues = {
-    name: "",
-    mobile: "",
-    email : "",
-    aadhar : "",
-    pan : "",
-    clientId : ""
+    name: userData && userData.name || '',
+    mobile: userData && userData.mobile || '',
+    email : userData && userData.email || '',
+    aadhar : userData && userData.aadhar_no || '',
+    pan : userData && userData.pan || '',
+    clientId : userData && userData.client_code || '',
+    user_photo : userData && userData.user_photo || '',
 }
 
 
@@ -76,6 +78,19 @@ const schema = Yup.object().shape({
 const passwordChange = () => {
   navigate('/change-password', { replace: true });
 }
+
+const convertToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+};
 
   return (
     <Card>
@@ -99,14 +114,39 @@ const passwordChange = () => {
         {isEditable ?  <Grid item xs={12} lg={6}>
             <SoftBox display="flex" flexDirection="column" height="100%">
               <SoftTypography variant="h5" fontWeight="bold" gutterBottom>
-                Welcome , Kamlesh Vishwakarma
+                Welcome , {userData && userData.name}
               </SoftTypography>
               <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
                 onSubmit={(values) => {
-                  setIsEditable(false)
-                
+                  setDisabled(true);
+                 
+                  let req = {
+                    "aadhar_no" : values.aadhar,
+                    "email" : values.email,
+                    "mobile" : values.mobile,
+                    "name" : values.name,
+                    "pan" : values.pan,
+                    "user_photo" : values.user_photo
+                  }
+
+                  ApiService.updateUserInfo(req).then((res)=> {
+                    setDisabled(false);
+                    if(res.status === 200){
+                      toast.success('user info updated successfully')
+                      getProfileDetails()
+                    }
+                  }).catch((err)=> {
+                    setDisabled(false);
+                      if(err.response){
+                        if(err.response.data.message){
+                          toast.error(err.response.data.message)
+                         }else{
+                            toast.error('something went wrong!')
+                        }
+                      }
+                    })
                   }}
                 >
                           {({
@@ -115,6 +155,7 @@ const passwordChange = () => {
                             touched,
                             handleChange,
                             handleBlur,
+                            setFieldValue,
                             handleSubmit,
                           }) => (
                             <Form className="login-padding">
@@ -142,6 +183,7 @@ const passwordChange = () => {
                                     </SoftTypography>
                                   </SoftBox>
                                   <SoftInput 
+                                    readOnly
                                     type="email" 
                                     placeholder="Email" 
                                     name="email" 
@@ -177,6 +219,7 @@ const passwordChange = () => {
                                     </SoftTypography>
                                   </SoftBox>
                                   <SoftInput
+                                     readOnly
                                     type="number" 
                                     placeholder="aadhar"
                                     name="aadhar"
@@ -195,6 +238,7 @@ const passwordChange = () => {
                                     </SoftTypography>
                                   </SoftBox>
                                   <SoftInput
+                                     readOnly
                                     type="text" 
                                     placeholder="pan"
                                     name="pan"
@@ -206,6 +250,38 @@ const passwordChange = () => {
                                     <ErrorMessage name="pan" component="div" className="error-message"/>
                                    ) : null}
                                 </SoftBox>
+                                <SoftBox>
+                <SoftBox ml={0.5}>
+                  <SoftTypography component="label" variant="caption" fontWeight="bold">
+                    User Photo
+                  </SoftTypography>
+                </SoftBox>
+                <label className="file-upload">
+                <h6>{profile}</h6>
+                <input
+                  type="file" 
+                  name="user_photo" 
+                  accept=".jpeg, .jpg"
+                  id="user_photo" 
+                  onChange={ async (e) => {
+                    const file = e.target.files[0];
+                    if(file === undefined){
+                      return
+                    }
+                    setProfile(file?.name || '')
+                    if (file?.size/1024/1024 < 2) {
+                     const base64 = await convertToBase64(file);
+                     setFieldValue('user_photo', base64)
+                    }
+                    else {
+                      setProfile('Upload Photo')
+                      setFieldValue('user_photo', '')
+                      toast.error('Image size must be of 2MB or less');
+                    };
+                  }} />
+                  </label>
+                 
+              </SoftBox>
                              
                                 <SoftBox mt={4} mb={1}>
                                 {isDisabled ?  (
@@ -259,11 +335,11 @@ const passwordChange = () => {
 
               </SoftBox>
             
-              {/* <SoftBox mt={2} bottom={0}>
+              <SoftBox mt={2} bottom={0}>
                 <SoftButton variant="gradient" color="info"  onClick={()=> {
                   setIsEditable(true)
                 }}>Edit</SoftButton>
-              </SoftBox> */}
+              </SoftBox>
 
               <hr />
               <SoftBox mt={2} bottom={0}>
@@ -293,11 +369,10 @@ const passwordChange = () => {
                 position="absolute"
                 left={0}
                 width="100%"
-                height="80%"
+                height="70%"
               />
               {userData && userData.user_photo ? <SoftBox component="img" src={userData.user_photo} alt={userData.name} width="100%" borderRadius="lg" height="70%"  /> : <SoftBox component="img" src={rocketWhite} alt="rocket" width="100%" borderRadius="lg" height="70%"  />}
-              
-            </SoftBox>
+              </SoftBox>
           </Grid>
         </Grid>
           )}

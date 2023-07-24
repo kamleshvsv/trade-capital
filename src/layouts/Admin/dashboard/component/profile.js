@@ -19,7 +19,7 @@ function AdminProfle() {
 
  
   const initialValues = {
-    name: "Kamlesh Vishwakarma",
+    name: "",
     mobile: "987654300",
     email : "Mika1729@yahoo.com",
     aadhar : "502506209785",
@@ -174,11 +174,11 @@ const schema = Yup.object().shape({
           <Grid item xs={12} lg={6}>
             <SoftBox display="flex" flexDirection="column" height="100%">
               <SoftTypography variant="h5" fontWeight="bold" gutterBottom>
-                Welcome , Kamlesh Vishwakarma
+                Welcome , 
               </SoftTypography>
               <SoftBox pt={1} mb={0.5}>
                 <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  Name : Kamlesh Vishwakarma
+                  Name : 
                 </SoftTypography>
                 </SoftBox>
                 <SoftBox pt={1} mb={0.5}>

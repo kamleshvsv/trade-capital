@@ -75,6 +75,10 @@ class ApiServices {
     getUserInformation(email){
         return http.get(`/user-info/` , config);
     }
+
+    updateUserInfo(data){
+        return http.post(`/user-info/` ,data, config);
+    }
 }
 
 export default new ApiServices();
