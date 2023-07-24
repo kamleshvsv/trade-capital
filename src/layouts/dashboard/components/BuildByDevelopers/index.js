@@ -13,24 +13,49 @@ import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from 'yup';
 import SoftInput from "components/SoftInput";
 import { useNavigate } from "react-router-dom";
+import ApiService from "API/ApiService";
+import { toast } from "react-toastify";
 
 function BuildByDevelopers() {
   const navigate = useNavigate()
   const [isEditable, setIsEditable] = useState(false)
+  const [isMainLoader, setIsMainLoader] = useState(true)
+  
   const [isDisabled, setDisabled] = useState(false);
-  // const [userData, setUserData] = useState({})
+  const [userData, setUserData] = useState()
 
-  // useEffect(()=> {
-  // },[])
+  useEffect(()=> {
+   getProfileDetails()
+  },[])
+
+  const getProfileDetails = () => {
+    setIsMainLoader(true)
+    let email = localStorage.getItem('email')
+    ApiService.getUserInformation(email).then((res)=> {
+      setIsMainLoader(false)
+      if(res.status === 200){
+        setUserData(res.data.data)
+      }
+    }).catch((err)=> {
+      setIsMainLoader(false);
+      if(err.response){
+        if(err.response.data.message){
+          toast.error(err.response.data.message)
+         }else{
+            toast.error('something went wrong!')
+        }
+      }
+    })
+  }
 
  
   const initialValues = {
-    name: "Kamlesh Vishwakarma",
-    mobile: "987654300",
-    email : "Mika1729@yahoo.com",
-    aadhar : "502506209785",
-    pan : "CJDPB3769B",
-    clientId : "ddd"
+    name: "",
+    mobile: "",
+    email : "",
+    aadhar : "",
+    pan : "",
+    clientId : ""
 }
 
 
@@ -55,6 +80,21 @@ const passwordChange = () => {
   return (
     <Card>
       <SoftBox p={2}>
+      {isMainLoader ? (
+            <div class="d-flex justify-content-center p-3">
+                  <div>
+                    <div className="spinner-grow text-success" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-danger" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-warning" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+          ) : (
         <Grid container spacing={3}>
         {isEditable ?  <Grid item xs={12} lg={6}>
             <SoftBox display="flex" flexDirection="column" height="100%">
@@ -184,46 +224,46 @@ const passwordChange = () => {
           <Grid item xs={12} lg={6}>
             <SoftBox display="flex" flexDirection="column" height="100%">
               <SoftTypography variant="h5" fontWeight="bold" gutterBottom>
-                Welcome , Kamlesh Vishwakarma
+                Welcome , {userData && userData?.name} 
               </SoftTypography>
               <SoftBox pt={1} mb={0.5}>
                 <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  Name : Kamlesh Vishwakarma
+                  Name : {userData && userData?.name} 
                 </SoftTypography>
                 </SoftBox>
                 <SoftBox pt={1} mb={0.5}>
                 <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  Client ID : 125220
+                  Client ID : {userData && userData?.client_code} 
                 </SoftTypography>
                 </SoftBox>
                 <SoftBox pt={1} mb={0.5}>
                 <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  Mobile : 987654300
+                  Mobile : {userData && userData?.mobile} 
                 </SoftTypography>
                 </SoftBox>
                 <SoftBox pt={1} mb={0.5}>
                 <SoftTypography variant="body2" color="text" fontWeight="medium">
-                Email : Mika1729@yahoo.com
+                Email : {userData && userData?.email} 
                 </SoftTypography> 
                 </SoftBox>
                 <SoftBox pt={1} mb={0.5}>
                 <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  Aadhar No. : 502506209785
+                  Aadhar No. : {userData && userData?.aadhar_no} 
                 </SoftTypography>
                 </SoftBox>
                 <SoftBox pt={1} mb={0.5}>
 
                <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  PAN No. : CJDPB3769B
+                  PAN No. : {userData && userData?.pan} 
                 </SoftTypography>
 
               </SoftBox>
             
-              <SoftBox mt={2} bottom={0}>
+              {/* <SoftBox mt={2} bottom={0}>
                 <SoftButton variant="gradient" color="info"  onClick={()=> {
                   setIsEditable(true)
                 }}>Edit</SoftButton>
-              </SoftBox>
+              </SoftBox> */}
 
               <hr />
               <SoftBox mt={2} bottom={0}>
@@ -255,10 +295,12 @@ const passwordChange = () => {
                 width="100%"
                 height="80%"
               />
-              <SoftBox component="img" src={rocketWhite} alt="rocket" width="100%" borderRadius="lg" height="70%"  />
+              {userData && userData.user_photo ? <SoftBox component="img" src={userData.user_photo} alt={userData.name} width="100%" borderRadius="lg" height="70%"  /> : <SoftBox component="img" src={rocketWhite} alt="rocket" width="100%" borderRadius="lg" height="70%"  />}
+              
             </SoftBox>
           </Grid>
         </Grid>
+          )}
       </SoftBox>
     </Card>
   );

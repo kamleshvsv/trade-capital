@@ -199,7 +199,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
                 setLoader(false)
                 navigate('/authentication/sign-in', { replace: true });
                 localStorage.clear()
-              },1500)
+              },1000)
               
             }}
           >

@@ -30,6 +30,7 @@ import OTPVerification from "layouts/authentication/otp-verfication";
 import UserList from "layouts/Admin/Users/users";
 import Settings from "examples/Icons/Settings";
 import ChangePassword from "layouts/Password";
+import ContactDetails from "layouts/Admin/Contact-details";
 
 const routes = [
   {
@@ -68,6 +69,16 @@ const routes = [
     component: <AdminPaymentDetails />,
     noCollapse: true,
   },
+  {
+    type: "admin",
+    name: "Contact Details",
+    key: "admin-contact-details",
+    route: "/admin-contact-details",
+    icon: <CustomerSupport size="12px" />,
+    component: <ContactDetails />,
+    noCollapse: true,
+  },
+  
   {
     type: "collapse",
     name: "Dashboard",

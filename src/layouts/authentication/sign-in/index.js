@@ -88,6 +88,7 @@ const forgotSchema = Yup.object().shape({
               navigate('/admin-dashboard', { replace: true });
             }
           }).catch((err)=> {
+            setDisabled(false);
             toast.error(err)
           })
         }else{
@@ -105,6 +106,7 @@ const forgotSchema = Yup.object().shape({
                 navigate('/dashboard', { replace: true });
             }
           }).catch((err)=> {
+            setDisabled(false);
             toast.error(err)
           })
         }
@@ -220,9 +222,10 @@ const forgotSchema = Yup.object().shape({
           email : values.email
         }
         ApiServices.forgotPassword(req).then((res)=> {
+          console.log(res)
           setDisabled(false);
-          if(res.status === 200){
-            toast.success( `Password sended on your register email : ${req.email}`)
+          if(res.status === 201){
+            toast.success( `Password sent on your register email : ${req.email}`)
             setDisabled(false);
             navigate('/')
           }

@@ -123,6 +123,7 @@ const convertToBase64 = (file) => {
                                       <th>Client ID</th>
                                       <th>Amount</th>
                                       <th>Type</th>
+                                      <th>View PDF</th>
                                       <th>Upload PDF</th>
                                   </tr>
                               </thead>
@@ -134,8 +135,9 @@ const convertToBase64 = (file) => {
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.client_code}</td>
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.amount}</td>
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.payment_type}</td>
+                                        <td  className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.document != null ? <a  href={data.document} target="_blank" className="badge bg-info cursor-pointer">View PDF</a> : null}</td>
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>
-                                            {data.document === null ? (
+                                           
                                                 <>
                                                     {fileUpload ? <span className="badge bg-success cursor-pointer"> Upload PDF </span> : (
                                                         <label className="badge bg-success cursor-pointer"> Upload PDF
@@ -146,7 +148,7 @@ const convertToBase64 = (file) => {
                                                         )}
                                                 </>
                                                
-                                            ) : <a  href={data.document} target="_blank" className="badge bg-info cursor-pointer">View PDF</a>}
+                                            {/* ) : <a  href={data.document} target="_blank" className="badge bg-info cursor-pointer">View PDF</a>} */}
                                         </td>
                                     </tr>
                                 )})}

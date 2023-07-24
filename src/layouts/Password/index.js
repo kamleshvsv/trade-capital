@@ -58,19 +58,25 @@ const schema = Yup.object().shape({
                           setDisabled(true);
                         
                           let req = {
-                              "oldpassword": values.oldPassword,
-                              "password": values.password,
+                              "old_password": values.oldPassword,
+                              "new_password": values.password,
+                              "email" : localStorage.getItem('email')
                             }
                         
                             ApiService.changePassword(req).then((res) => {
-                              if(res.data.status_code === 200){
-                                    navigate('/change-password', { replace: true });
+                              setDisabled(false);
+                              if(res.status === 201){
+                                  toast.success('Password changed successfully')
+                                    navigate('/dashboard', { replace: true });
                               }
                             })
                             .catch((err)=> {
+                              setDisabled(false);
                               if(err.response){
-                                if(err.response.status === 400){
-                                  console.log("value", err.response.data)
+                                if(err.response.data.message){
+                                  toast.error(err.response.data.message)
+                                 }else{
+                                    toast.error('something went wrong!')
                                 }
                               }
                             })

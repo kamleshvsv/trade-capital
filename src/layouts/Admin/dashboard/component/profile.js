@@ -6,7 +6,7 @@ import SoftTypography from "components/SoftTypography";
 
 // Images
 import wavesWhite from "assets/images/shapes/waves-white.svg";
-import rocketWhite from "assets/images/team-3.jpg";
+import adminPhoto from "assets/images/admin.png";
 import SoftButton from "components/SoftButton";
 import { useState } from "react";
 import { ErrorMessage, Form, Formik } from "formik";
@@ -46,10 +46,10 @@ const schema = Yup.object().shape({
     <Card>
       <SoftBox p={2}>
         <Grid container spacing={3}>
-        {isEditable ?  <Grid item xs={12} lg={6}>
+        {isEditable ?  <Grid item xs={12} lg={8}>
             <SoftBox display="flex" flexDirection="column" height="100%">
               <SoftTypography variant="h5" fontWeight="bold" gutterBottom>
-                Welcome , Kamlesh Vishwakarma
+                Welcome , 
               </SoftTypography>
               <Formik
                 initialValues={initialValues}
@@ -191,25 +191,11 @@ const schema = Yup.object().shape({
                 Email : Mika1729@yahoo.com
                 </SoftTypography> 
                 </SoftBox>
-            
-              <SoftBox mt={6} bottom={0}>
-                <SoftButton variant="gradient" color="info"  onClick={()=> {
-                  setIsEditable(true)
-                }}>Edit</SoftButton>
-              </SoftBox>
             </SoftBox>
-
-            <hr />
-              <SoftBox mt={2} bottom={0}>
-              <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  Website Status
-                  <span className="float-right cursor-pointer text-primary" >Change</span>
-                </SoftTypography> 
-              </SoftBox>
             
           </Grid>
           )}
-          <Grid item xs={12} lg={5} sx={{ position: "relative", ml: "auto" }}>
+          <Grid item xs={12} lg={4} sx={{ position: "relative", ml: "auto" }}>
             <SoftBox
               height="100%"
               display="grid"
@@ -229,7 +215,7 @@ const schema = Yup.object().shape({
                 width="100%"
                 height="80%"
               />
-              <SoftBox component="img" src={rocketWhite} alt="Qr Code" width="100%" borderRadius="lg" height="70%"  />
+              <SoftBox component="img" src={adminPhoto} alt="Qr Code" width="100%" borderRadius="lg" height="80%"  />
             </SoftBox>
           </Grid>
         </Grid>

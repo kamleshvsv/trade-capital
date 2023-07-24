@@ -134,7 +134,6 @@ const convertToBase64 = (file) => {
               if(err.response.status === 400){
                 console.log(formError,"value", err.response.data)
                 setFormError(err.response.data)
-                
               }
             }
             setDisabled(false)

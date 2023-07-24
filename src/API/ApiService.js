@@ -11,6 +11,10 @@ class ApiServices {
         return http.post(`/admin-login/`, data);
     }
 
+    getContactInfo(){
+        return http.get(`/contact/`,config);
+    }
+
     login(data){
         return http.post(`/login/`, data);
     }
@@ -52,7 +56,7 @@ class ApiServices {
     }
 
     changePassword(data){
-        return http.put(`/change-password/`,data, config);
+        return http.post(`/reset-password/`,data, config);
     }
 
     forgotPassword(value){
@@ -61,11 +65,15 @@ class ApiServices {
     
 
     contactInfo(data){
-        return http.post(`/contact-info/`,data);
+        return http.post(`/contact/`,data);
     }
 
     getAllPortfolio(){
         return http.get(`/portfolio-list/` , config);
+    }
+
+    getUserInformation(email){
+        return http.get(`/user-info/` , config);
     }
 }
 

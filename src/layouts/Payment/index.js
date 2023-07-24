@@ -61,6 +61,7 @@ function PaymentDetails() {
         payout : 'payout'
       }
       ApiService.getAllPay().then((res)=> {
+        console.log(res)
         if(res.status === 200){
           setTransactionData(res.data)
         }
@@ -249,6 +250,8 @@ function PaymentDetails() {
                                 )})}
                               </tbody>
                             </table>
+                            {transactionData && transactionData.length === 0 ?  <div className="text-center">Record Not Found</div> : null }
+               
                         </Grid>
                     </Grid>
                 </SoftBox>
