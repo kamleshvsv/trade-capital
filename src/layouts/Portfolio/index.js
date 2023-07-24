@@ -93,12 +93,12 @@ function PortfolioDetails() {
                                 return (
                                     <tr key={data.id} >
                                         <td >{formatDate(data.update_at)}</td>
-                                        <td >{data.clientId}</td>
+                                        <td >{data.client_code}</td>
                                         <td >{data.document != null ? <span className="badge bg-info cursor-pointer" onClick={(e) => {
                                             e.preventDefault()
-                                            pdfDownlaod(data.pdfLink, data.clientId )
+                                            pdfDownlaod(data.document, data.client_code )
 
-                                        }} >Download PDF</span> : null}</td>
+                                        }} >Download PDF</span> : '-'}</td>
                                        
                                     </tr>
                                 )})}

@@ -10,7 +10,7 @@ import Sidenav from "examples/Sidenav";
 import theme from "assets/theme";
 import themeRTL from "assets/theme/theme-rtl";
 
-import rtlPlugin from "stylis-plugin-rtl";
+// import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 
@@ -32,12 +32,12 @@ export default function App() {
 
   // Cache for the rtl
   useMemo(() => {
-    const cacheRtl = createCache({
-      key: "rtl",
-      stylisPlugins: [rtlPlugin],
-    });
+    // const cacheRtl = createCache({
+    //   key: "rtl",
+    //   stylisPlugins: [rtlPlugin],
+    // });
 
-    setRtlCache(cacheRtl);
+    // setRtlCache(cacheRtl);
     console.log(layout,"laypoutffffffffffffffffffffffffffffffff")
   }, []);
 

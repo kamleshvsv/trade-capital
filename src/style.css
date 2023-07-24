@@ -8,6 +8,22 @@
     width: 100%;
     background-position-y: top;
 }
+.overlay-disable{
+  opacity: .5;
+  cursor: not-allowed;
+  z-index: 1111;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Works for Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
 .float-right{
   float: right;
 }

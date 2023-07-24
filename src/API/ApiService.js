@@ -56,7 +56,7 @@ class ApiServices {
     }
 
     forgotPassword(value){
-        return http.post(`/forgot-password/`,value);
+        return http.post(`/forget-password/`,value);
     }
     
 

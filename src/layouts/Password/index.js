@@ -106,7 +106,7 @@ const schema = Yup.object().shape({
                                   <SoftBox >
                                     <SoftBox ml={0.5}>
                                       <SoftTypography component="label" variant="caption" fontWeight="bold">
-                                        Password
+                                       New Password
                                       </SoftTypography>
                                     </SoftBox>
                                     <SoftInput  

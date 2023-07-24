@@ -1,4 +1,3 @@
-// Capital Growth Trader React components
 import SoftBox from "components/SoftBox";
 
 // Capital Growth Trader React examples
@@ -25,6 +24,7 @@ function PaymentDetails() {
 
     const payOutchema = Yup.object().shape({
         payOut:  Yup.string()
+      .matches("^[0-9]*$", "Invalid value")
       .required("This field is required"),
     });
     const initialPayInValues = {
@@ -33,7 +33,9 @@ function PaymentDetails() {
 
     const payInchema = Yup.object().shape({
       payIn:  Yup.string()
-      .required("This field is required"),
+      .matches("^[0-9]*$", "Invalid value")
+      .required("This field is required")
+      
     });
 
     useEffect(()=> {
@@ -70,7 +72,7 @@ function PaymentDetails() {
     <DashboardLayout>
       <DashboardNavbar />
         <SoftBox py={3}>
-            <Card>
+            <Card className={`${isPayInDisabled ? "overlay-disable" : ""}  ${isPayOutDisabled ? "overlay-disable" : ""}`}>
                 <SoftBox p={2}> 
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={4} >

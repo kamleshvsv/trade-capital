@@ -199,8 +199,13 @@ const schema = Yup.object().shape({
               </SoftBox>
             </SoftBox>
 
-         
-
+            <hr />
+              <SoftBox mt={2} bottom={0}>
+              <SoftTypography variant="body2" color="text" fontWeight="medium">
+                  Website Status
+                  <span className="float-right cursor-pointer text-primary" >Change</span>
+                </SoftTypography> 
+              </SoftBox>
             
           </Grid>
           )}

@@ -116,10 +116,11 @@ const convertToBase64 = (file) => {
                             <div className="text-center">
                               <strong>Transaction History</strong>
                             </div>
-                            <table className="table table-striped bank-table table-responsive">
+                            <table  className={`table table-striped bank-table table-responsive ${fileUpload ? "overlay-disable" : ""}`}>
                               <thead>
                                   <tr>
                                       <th>Date</th>
+                                      <th>Client ID</th>
                                       <th>Amount</th>
                                       <th>Type</th>
                                       <th>Upload PDF</th>
@@ -130,6 +131,7 @@ const convertToBase64 = (file) => {
                                 return (
                                     <tr key={data.id} >
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{formatDate(data.created_at)}</td>
+                                        <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.client_code}</td>
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.amount}</td>
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.payment_type}</td>
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>

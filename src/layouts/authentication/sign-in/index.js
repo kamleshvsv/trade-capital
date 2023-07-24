@@ -220,14 +220,21 @@ const forgotSchema = Yup.object().shape({
           email : values.email
         }
         ApiServices.forgotPassword(req).then((res)=> {
+          setDisabled(false);
           if(res.status === 200){
             toast.success( `Password sended on your register email : ${req.email}`)
             setDisabled(false);
             navigate('/')
           }
         }).catch((err)=> {
-          toast.error(err)
-          console.log(err)
+          setDisabled(false);
+          console.log(err.response.data, "err.response.data")
+          if(err.response.data.message){
+            toast.error(err.response.data.message)
+          }else{
+            toast.error('something went wrong!')
+          }
+          
         })
       }}
       >
