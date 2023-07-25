@@ -2,8 +2,6 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Icon from "@mui/material/Icon";
 import SoftBox from "components/SoftBox";
-import SoftTypography from "components/SoftTypography";
-
 function DefaultNavbarLink({ icon, name, route, light }) {
   const navigate =  useNavigate()
 

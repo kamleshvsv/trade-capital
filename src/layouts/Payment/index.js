@@ -14,6 +14,7 @@ import { Card, Grid } from "@mui/material";
 import ApiService from "API/ApiService";
 import { formatDate } from "examples/Constant/date-formate";
 import { useNavigate } from "react-router-dom";
+import { Table } from "react-bootstrap";
 function PaymentDetails() {
     const [transactionData, setTransactionData] = useState([])
     const [isPayInDisabled, setPayInDisabled] = useState(false);
@@ -228,6 +229,7 @@ function PaymentDetails() {
                             <div className="text-center">
                               <strong>Transaction History</strong>
                             </div>
+                            <Table responsive>
                             <table className="table table-striped bank-table table-responsive">
                               <thead>
                                   <tr>
@@ -250,6 +252,7 @@ function PaymentDetails() {
                                 )})}
                               </tbody>
                             </table>
+                            </Table>
                             {transactionData && transactionData.length === 0 ?  <div className="text-center">Record Not Found</div> : null }
                
                         </Grid>

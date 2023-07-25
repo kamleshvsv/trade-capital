@@ -45,10 +45,11 @@ const schema = Yup.object().shape({
   .required("Name is a required field"),
   mobileNo: Yup.string()
   .min(10, "Mobile must be at least 10 digit")
-  .max(12, "Mobile must be at least 12 digit")
+  .max(12, "Mobile not more then 12 digit")
   .required("Mobile is a required field"),
   aadhar: Yup.string()
-  .min(14, "Aadhar must be at least 14 digit")
+  .min(12, "Aadhar must be at least 12 digit")
+  .max(12, "Aadhar not more then  12 digit")
   .required("Aadhar is a required field"),
   pan: Yup.string()
   .matches(

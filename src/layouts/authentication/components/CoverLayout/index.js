@@ -97,6 +97,7 @@ function CoverLayout({ color, header, title, description, image, top, children }
                 transform: "skewX(10deg)",
               }}
             />
+            <strong className="title-text-image">Capital Growth Trader</strong>
           </SoftBox>
         </Grid>
       </Grid>

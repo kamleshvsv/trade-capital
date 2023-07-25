@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ApiService from "API/ApiService";
 import { formatDate } from "examples/Constant/date-formate";
+import { Table } from "react-bootstrap";
 function PortfolioDetails() {
     const [isMainLoader,
         setMainLoader] = useState(true);
@@ -41,17 +42,18 @@ function PortfolioDetails() {
         });
     }
 
-    const pdfDownlaod = (url, clientId) => {
-        fetch(url).then(response => {
-            response.blob().then(blob => {
-                const fileURL = window.URL.createObjectURL(blob);
-                let alink = document.createElement('a');
-                alink.href = fileURL;
-                alink.download = `${clientId}.pdf`;
-                alink.click();
-            })
-        })
-    }
+    // const pdfDownlaod = (url, clientId) => {
+    //     fetch(url).then(response => {
+    //         response.blob().then(blob => {
+    //             const fileURL = window.URL.createObjectURL(blob);
+    //             console.log(fileURL)
+    //             // let alink = document.createElement('a');
+    //             // alink.href = fileURL;
+    //             // alink.download = `${clientId}.pdf`;
+    //             // alink.click();
+    //         })
+    //     })
+    // }
 
   return (
     <DashboardLayout>
@@ -79,11 +81,12 @@ function PortfolioDetails() {
                             <div className="text-center">
                               <strong>Portfolio Summary</strong>
                             </div>
+                            <Table responsive>
                             <table className="table table-striped bank-table table-responsive">
                               <thead>
                                   <tr>
                                       <th>Date</th>
-                                      <th>Client Id</th>
+                                      <th>Client ID</th>
                                       <th>PDF</th>
                                   </tr>
                               </thead>
@@ -94,17 +97,22 @@ function PortfolioDetails() {
                                     <tr key={data.id} >
                                         <td >{formatDate(data.update_at)}</td>
                                         <td >{data.client_code}</td>
-                                        <td >{data.document != null ? <span className="badge bg-info cursor-pointer" onClick={(e) => {
-                                            e.preventDefault()
-                                            pdfDownlaod(data.document, data.client_code )
-
-                                        }} >Download PDF</span> : '-'}</td>
-                                       
+                                        <td >{data.document != null ? <a
+                                            href={data.document}
+                                            download="Example-PDF-document"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                          >
+                                          <span className="badge bg-info cursor-pointer">Download PDF</span>
+                                        </a> : '-' }
+                                        
+                                        </td>                                     
                                     </tr>
                                 )})}
                               </tbody>
                               ) : null}
                             </table>
+                            </Table>
 
                             {portFolioData && portFolioData.length === 0 ? <div className="text-center p-3">No record found</div> : null }
                         </Grid>

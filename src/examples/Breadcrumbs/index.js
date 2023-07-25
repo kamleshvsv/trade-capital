@@ -1,19 +1,3 @@
-/**
-=========================================================
-* Capital Growth Trader React - v4.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Trading Developer (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// react-router-dom components
 import { Link } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
@@ -32,6 +16,10 @@ function Breadcrumbs({ icon, title, route, light }) {
 
   return (
     <SoftBox mr={{ xs: 0, xl: 8 }}>
+      <div className="mb-header">Capital Growth Trader
+      </div>
+      <br className="is-enable"/>
+     
       <MuiBreadcrumbs
         sx={{
           "& .MuiBreadcrumbs-separator": {

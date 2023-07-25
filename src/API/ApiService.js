@@ -11,6 +11,10 @@ class ApiServices {
         return http.post(`/admin-login/`, data);
     }
 
+    adminPortfolioList(){
+        return http.get(`/admin-portfolio-list/`,config);
+    }
+
     getContactInfo(){
         return http.get(`/contact/`,config);
     }

@@ -9,6 +9,7 @@ import {toast} from "react-toastify";
 import {Card, Grid} from "@mui/material";
 import ApiService from "API/ApiService";
 import { useNavigate } from "react-router-dom";
+import { Table } from "react-bootstrap";
 function UserList() {
   const [mainLoader,
     setMainLoader] = useState(true)
@@ -73,11 +74,12 @@ function UserList() {
                     <div className="text-center">
                       <strong>Users</strong>
                     </div>
+                    <Table responsive>
                     <table className="table table-striped bank-table table-responsive">
                       <thead>
                         <tr>
                           <th></th>
-                          <th>Client Id</th>
+                          <th>Client ID</th>
                           <th>Name</th>
                           <th>Email</th>
                           <th>Mobile</th>
@@ -132,6 +134,7 @@ function UserList() {
                       </tbody>
                    
                     </table>
+                    </Table>
                     {userListData && userListData.length === 0 ?  <div className="text-center">Record Not Found</div> : null }
                
                   </Grid>

@@ -125,7 +125,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
         {isMini ? null : (
           <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
          
-            <SoftBox color={light ? "white" : "inherit"}>
+            <SoftBox color={light ? "white" : "inherit"} className="mobile-menu-set">
                 <IconButton sx={navbarIconButton} size="small">
                   <Icon
                     sx={({ palette: { dark, white } }) => ({

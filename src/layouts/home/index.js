@@ -56,7 +56,7 @@ function HomePage() {
       <div className='background-image'>
        <div>  <button className="get-started" onClick={()=> {
            navigate('/authentication/sign-in', { replace: true });
-       }}>Get Started</button></div>
+       }}>Sign In</button></div>
       </div>
     <HotlistOne />
   

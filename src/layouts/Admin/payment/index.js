@@ -11,6 +11,7 @@ import { Card, Grid } from "@mui/material";
 import ApiService from "API/ApiService";
 import { formatDate } from "examples/Constant/date-formate";
 import { useNavigate } from "react-router-dom";
+import { Table } from "react-bootstrap";
 function AdminPaymentDetails() {
     const [transactionData, setTransactionData] = useState([])
     const [fileUpload, setFileUpload] = useState(false)
@@ -36,7 +37,7 @@ function AdminPaymentDetails() {
   
       const getAllPayment = () => {
         setMainLoader(true)
-        ApiService.getAllPay().then((res)=> {
+        ApiService.adminPortfolioList().then((res)=> {
           if(res.status === 200){
           
             setTransactionData(res.data)
@@ -116,6 +117,7 @@ const convertToBase64 = (file) => {
                             <div className="text-center">
                               <strong>Transaction History</strong>
                             </div>
+                            <Table responsive>
                             <table  className={`table table-striped bank-table table-responsive ${fileUpload ? "overlay-disable" : ""}`}>
                               <thead>
                                   <tr>
@@ -154,6 +156,9 @@ const convertToBase64 = (file) => {
                                 )})}
                               </tbody>
                             </table>
+                            </Table>
+                            {transactionData && transactionData.length === 0 ?  <div className="text-center">Record Not Found</div> : null }
+               
                         </Grid>
                     </Grid>
                 </SoftBox>

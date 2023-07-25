@@ -10,6 +10,7 @@ import {Card, Grid} from "@mui/material";
 import ApiService from "API/ApiService";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "examples/Constant/date-formate";
+import { Table } from "react-bootstrap";
 function ContactDetails() {
   const [mainLoader,
     setMainLoader] = useState(true)
@@ -74,6 +75,7 @@ function ContactDetails() {
                     <div className="text-center">
                       <strong>Contact Information</strong>
                     </div>
+                    <Table responsive>
                     <table className="table table-striped bank-table table-responsive">
                       <thead>
                         <tr>
@@ -114,6 +116,7 @@ function ContactDetails() {
                       </tbody>
                    
                     </table>
+                    </Table>
                     {ContactDetailsData && ContactDetailsData.length === 0 ?  <div className="text-center">Record Not Found</div> : null }
                
                   </Grid>
