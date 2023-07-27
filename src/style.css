@@ -613,6 +613,11 @@ img.MuiBox-root.css-5fzm53 {
   margin: 10px;
 }
 
+.disabledtable {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 .document-div img{
   width: 100%;
   border-radius: 9px;

@@ -94,7 +94,7 @@ const forgotSchema = Yup.object().shape({
           ApiServices.login(req).then((res) => {
             if(res.data.status_code === 400){
               setDisabled(false);
-              toast.error("Invalid Credentials");
+              toast.error(res.data.message);
             }
             if(res.data.status_code === 200){
               setDisabled(false);

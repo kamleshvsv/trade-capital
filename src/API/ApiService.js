@@ -51,6 +51,12 @@ class ApiServices {
         return http.get(`/all-user-list/`, config);
     }
 
+    updateUserStatus(data) {
+        return http.post(`/update-user-status/`, data ,config);
+    }
+
+     
+
     payment(data){
         return http.post(`/payment-in-out/`,data, config);
     }

@@ -249,7 +249,7 @@ function PaymentDetails() {
                               </tbody>
                             </table>
                             </Table>
-                            {transactionData && transactionData.length === 0 ?  <div className="text-center">Record Not Found</div> : null }
+                            {transactionData && transactionData.length === 0 ?  <div className="text-center">Record not found</div> : null }
                
                         </Grid>
                     </Grid>

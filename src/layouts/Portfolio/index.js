@@ -110,7 +110,7 @@ function PortfolioDetails() {
                             </table>
                             </Table>
 
-                            {portFolioData && portFolioData.length === 0 ? <div className="text-center p-3">No record found</div> : null }
+                            {portFolioData && portFolioData.length === 0 ? <div className="text-center p-3">Record not found</div> : null }
                         </Grid>
                     </Grid>
                 </SoftBox>

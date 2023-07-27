@@ -117,7 +117,7 @@ function ContactDetails() {
                    
                     </table>
                     </Table>
-                    {ContactDetailsData && ContactDetailsData.length === 0 ?  <div className="text-center">Record Not Found</div> : null }
+                    {ContactDetailsData && ContactDetailsData.length === 0 ?  <div className="text-center">Record not found</div> : null }
                
                   </Grid>
                 </Grid>

@@ -126,6 +126,9 @@ const convertToBase64 = (file) => {
             "aadhar_back_photo": values.aadharBackPhoto,
             "pan_photo": values.panPhoto,
             "user_photo": values.profilePhoto,
+            "account_no":values.account_no,
+            "bank_name": values.bank,
+            "ifsc_code": values.ifsc
           }
 
           ApiServices.registerUser(req).then((res) => {

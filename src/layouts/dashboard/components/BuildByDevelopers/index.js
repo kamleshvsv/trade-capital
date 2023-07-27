@@ -51,16 +51,16 @@ function BuildByDevelopers() {
 
  
   const initialValues = {
-    name: userData && userData.name || '',
-    mobile: userData && userData.mobile || '',
-    email : userData && userData.email || '',
-    aadhar : userData && userData.aadhar_no || '',
-    pan : userData && userData.pan || '',
-    clientId : userData && userData.client_code || '',
-    user_photo : userData && userData.user_photo || '',
-    bank : userData && userData.bank || '',
-    ifsc :  userData && userData.ifsc || '',
-    account_no :  userData && userData.account_no || '',
+    name: userData && userData.name ? userData.name : '',
+    mobile: userData && userData.mobile ?  userData.mobile : '',
+    email : userData && userData.email  ?userData.email  : '',
+    aadhar : userData && userData.aadhar_no  ? userData.aadhar_no : '',
+    pan : userData && userData.pan  ? userData.pan : '',
+    clientId : userData && userData.client_code  ? userData.client_code : '',
+    user_photo : userData && userData.user_photo  ? userData.user_photo : '',
+    bank : userData && userData.bank  ? userData.bank : '',
+    ifsc :  userData && userData.ifsc  ? userData.ifsc : '',
+    account_no :  userData && userData.account_no  ? userData.account_no : '',
 }
 
 
@@ -137,8 +137,8 @@ const convertToBase64 = (file) => {
                     "mobile" : values.mobile,
                     "name" : values.name,
                     "pan" : values.pan,
-                    "bank" : values.bank,
-                    "ifsc" : values.ifsc,
+                    "bank_name" : values.bank,
+                    "ifsc_code" : values.ifsc,
                     "account_no" : values.account_no,
                     "user_photo" : values.user_photo
                   }
@@ -412,13 +412,13 @@ const convertToBase64 = (file) => {
               </SoftBox>
               <SoftBox pt={1} mb={0.5}>
               <SoftTypography variant="body2" color="text" fontWeight="medium">
-                 Bank Name : {userData && userData?.bank} 
+                 Bank Name : {userData && userData?.bank_name} 
                 </SoftTypography>
                 </SoftBox>
 
                 <SoftBox pt={1} mb={0.5}>
                 <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  IFSC Code : {userData && userData?.ifsc} 
+                  IFSC Code : {userData && userData?.ifsc_code} 
                 </SoftTypography>
                 </SoftBox>
 

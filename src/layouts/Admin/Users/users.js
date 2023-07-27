@@ -11,11 +11,15 @@ import ApiService from "API/ApiService";
 import { useNavigate } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import { formatDate } from "examples/Constant/date-formate";
+import jwtDecode from "jwt-decode";
 function UserList() {
   const [mainLoader,
     setMainLoader] = useState(true)
   const [isUserDetails,
       setIsUserDetails] = useState(false)
+  const [isUserUpdate,
+    setIsUserUpdate] = useState(false)
+      
   const [userListData,
     setUserListData] = useState([])
   const [userDetails,
@@ -72,9 +76,35 @@ function UserList() {
     setIsUserDetails(true)
   }
 
-  const userPersmission = (data) => {
-    console.log(data)
+  const decodePassword = (data) => {
+    const pass = jwtDecode(data)
+    return pass.password
+  }
 
+  const userPersmission = (data) => {
+  
+    setIsUserUpdate(true)
+    let req = {
+      "email" : data.email,
+      "is_active" : data.is_active ? 0 : 1
+    }
+    ApiService.updateUserStatus(req).then(res => {
+      setIsUserUpdate(false)
+      if(res.status === 200){
+        AllUsers()
+      }
+    }).catch(err => {
+      setIsUserUpdate(false)
+    })
+    // let dataArr = []
+    // for (let index = 0; index < userListData.length; index++) {
+    //   const element = userListData[index];
+    //   if(element.email === data.email){
+    //     element.is_active  = element.is_active ? false : true
+    //   }
+    //   dataArr.push(element)
+    //   setUserListData(dataArr)
+    // }
   }
 
   return (
@@ -197,7 +227,7 @@ function UserList() {
                       <strong>Users</strong>
                     </div>
                     <Table responsive>
-                    <table className="table table-striped bank-table table-responsive">
+                    <table className={`table table-striped bank-table table-responsive ${isUserUpdate ? 'disabledtable' : ''}` }  >
                       <thead>
                         <tr>
                           <th></th>
@@ -241,9 +271,9 @@ function UserList() {
                                 <td
                                  >
                                   <strong>{data
-                                    ?.bank} 
-                                    (IFSC : {data
-                                    ?.ifsc})</strong>
+                                    ?.bank_name} - 
+                                     (IFSC : {data
+                                    ?.ifsc_code})</strong>
                                   <div>Ac. No - {data
                                     ?.account_no}</div>
                                  </td>
@@ -251,8 +281,7 @@ function UserList() {
                                  >{data
                                     ?.email}</td>
                                 <td
-                                 >{data
-                                    ?.password}</td>
+                                 >{decodePassword(data?.password)}</td>
                                 <td
                                  >{data
                                     ?.mobile}</td>
@@ -266,9 +295,9 @@ function UserList() {
                                 <td >
                                 <span onClick={()=> {
                                   userPersmission(data)
-                                }} className={`${data.is_superuser
-                                  ? "badge bg-danger cursor-pointer"
-                                  : "badge bg-success cursor-pointer"}`} >{data.is_superuser ? 'Inactive' : 'Active'}</span>
+                                }} className={`${data.is_active
+                                  ? "badge bg-success cursor-pointer"
+                                  : "badge bg-danger  cursor-pointer"}`} >{data.is_active ? 'Active' : 'Inactive'}</span>
 
                                 </td>
                               </tr>
@@ -278,7 +307,7 @@ function UserList() {
                    
                     </table>
                     </Table>
-                    {userListData && userListData.length === 0 ?  <div className="text-center">Record Not Found</div> : null }
+                    {userListData && userListData.length === 0 ?  <div className="text-center">Record not found</div> : null }
                
                   </Grid>
                 </Grid>

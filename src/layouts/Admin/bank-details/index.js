@@ -183,7 +183,7 @@ function AdminBankDetails() {
                               ?.upi_link || ''}</strong>
                         </SoftBox>
                       )
-                      : <div className="text-center p-3">No Record Found</div>}
+                      : <div className="text-center p-3">Record not found</div>}
                   </Grid>
                   <Grid
                     item
