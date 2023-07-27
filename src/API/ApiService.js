@@ -7,6 +7,10 @@ const config = {
 
 class ApiServices {
 
+    isActie(){
+        return http.get(`/app-status/`);
+    }
+
     adminLogin(data){
         return http.post(`/admin-login/`, data);
     }

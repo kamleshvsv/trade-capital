@@ -126,11 +126,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
           <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
          
             <SoftBox color={light ? "white" : "inherit"} className="mobile-menu-set">
-                <IconButton sx={navbarIconButton} size="small">
+                <IconButton sx={navbarIconButton} size="small" > 
                   <Icon
                     sx={({ palette: { dark, white } }) => ({
                       color: light ? white.main : dark.main,
                     })}
+                    className="is-enable"
                   >
                     account_circle
                   </Icon>

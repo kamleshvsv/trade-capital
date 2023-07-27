@@ -25,8 +25,7 @@ function OTPVerification() {
     }
   },[])
 
-  useEffect(()=> {
-    console.log(email,"data")    
+  useEffect(()=> {    
   },[email])
 
   const initialValues = {
@@ -61,7 +60,6 @@ const schema = Yup.object().shape({
             "otp": values.otp,
           }
           ApiService.verifyOTP(req).then((res) => {
-            console.log(res,"Outerddd")
             if(res.data.status_code === 200){
               toast.success(res.data.message)
               localStorage.setItem('email', req.email)

@@ -38,7 +38,6 @@ export default function App() {
     // });
 
     // setRtlCache(cacheRtl);
-    console.log(layout,"laypoutffffffffffffffffffffffffffffffff")
   }, []);
 
   const handleOnMouseEnter = () => {

@@ -95,7 +95,7 @@ function ContactDetails() {
                                   ? "bg-payin"
                                   : "bg-prime"}`}>{formatDate(data.created_at)}</td>
                                 <td
-                                  className={`${data.is_superuser
+                                  className={`text-capitalize ${data.is_superuser
                                   ? "bg-payin"
                                   : "bg-prime"}`}>{data
                                     ?.name}</td>

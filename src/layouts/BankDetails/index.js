@@ -44,7 +44,6 @@ function BankDetails() {
         }
       })
       .catch((err) => {
-        console.log(err, "result")
       });
   }
 

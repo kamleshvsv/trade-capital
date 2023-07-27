@@ -81,7 +81,6 @@ function ContactUS() {
           message : values.message,
         }
         ApiService.contactInfo(req).then((res)=> {
-          console.log(res)
           setDisabled(false);
           if(res.status === 201){
             toast.success("Contact info submitted successfully!");

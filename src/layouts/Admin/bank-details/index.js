@@ -61,7 +61,6 @@ function AdminBankDetails() {
     ApiService
       .getUpiDetails()
       .then((result) => {
-        console.log(result, "result")
         if (result.status === 200) {
           setIsEditable(true)
           setMainLoader(false)
@@ -74,7 +73,6 @@ function AdminBankDetails() {
       })
       .catch((err) => {
         setMainLoader(false)
-        console.log(err, "result")
       });
   }
 

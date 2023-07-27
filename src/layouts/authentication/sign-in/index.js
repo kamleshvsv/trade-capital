@@ -67,7 +67,6 @@ const forgotSchema = Yup.object().shape({
       validationSchema={schema}
       onSubmit={(values) => {
         setDisabled(true);
-        console.log(values,"values")
         var req = {
           "email" : values.email,
           "code" : 0,
@@ -222,7 +221,6 @@ const forgotSchema = Yup.object().shape({
           email : values.email
         }
         ApiServices.forgotPassword(req).then((res)=> {
-          console.log(res)
           setDisabled(false);
           if(res.status === 201){
             toast.success( `Password sent on your register email : ${req.email}`)
@@ -231,7 +229,6 @@ const forgotSchema = Yup.object().shape({
           }
         }).catch((err)=> {
           setDisabled(false);
-          console.log(err.response.data, "err.response.data")
           if(err.response.data.message){
             toast.error(err.response.data.message)
           }else{

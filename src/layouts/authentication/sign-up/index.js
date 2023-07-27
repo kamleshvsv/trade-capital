@@ -36,7 +36,10 @@ function SignUp() {
     aadharFrontPhoto : "",
     aadharBackPhoto : "",
     panPhoto : "",
-    profilePhoto : ""
+    profilePhoto : "",
+    bank :"",
+    ifsc : "",
+    account_no : ""
 
 }
 
@@ -55,7 +58,7 @@ const schema = Yup.object().shape({
   .matches(
     /^([A-Za-z]{5}[0-9]{4}[A-z]{1})$/g,
           "Invalid PAN number"
-        )
+  )
   .required("PAN is a required field"),
   email: Yup.string()
     .required("Email is a required field")
@@ -74,7 +77,13 @@ const schema = Yup.object().shape({
     panPhoto: Yup.string()
     .required("PAN photo is a required field"),
     profilePhoto: Yup.string()
-    .required("Profile photo is a required field")
+    .required("Profile photo is a required field"),
+    account_no: Yup.string()
+    .required("Account no. is a required field"),
+    bank: Yup.string()
+    .required("Bank is a required field"),
+    ifsc: Yup.string()
+    .required("IFSC is a required field")
 });
 
 const convertToBase64 = (file) => {
@@ -122,7 +131,6 @@ const convertToBase64 = (file) => {
           ApiServices.registerUser(req).then((res) => {
             if(res.data.status_code === 200){
               if(res.data.data) {
-                console.log(res.data.data,"res")
                 localStorage.setItem('register_user_data', JSON.stringify(res.data.data))
                 navigate('/verify-otp')
                 setDisabled(false)
@@ -133,7 +141,6 @@ const convertToBase64 = (file) => {
           .catch((err)=> {
             if(err.response){
               if(err.response.status === 400){
-                console.log(formError,"value", err.response.data)
                 setFormError(err.response.data)
               }
             }
@@ -267,6 +274,85 @@ const convertToBase64 = (file) => {
                 {errors.pan && touched.pan ?  <ErrorMessage name="pan" component="div" className="error-message" /> : null}
                 {formError && formError.pan && formError.pan[0] ? <div className="error-message">{formError.pan[0]}</div> : null}
               </SoftBox>
+
+
+              <SoftBox>
+                <SoftBox ml={0.5}>
+                  <SoftTypography component="label" variant="caption" fontWeight="bold">
+                    Bank Name
+                  </SoftTypography>
+                </SoftBox>
+                <SoftInput
+                  type="text" 
+                  placeholder="Bank Name" 
+                  name="bank" 
+                  id="bank" 
+                  onChange={(e)=> {
+                    handleChange(e)
+                    const newData = { ...formError }; 
+                    newData.bank = []
+                    setFormError(newData)
+                    }
+                  }
+                  onBlur={handleBlur}
+                  className={`${errors.bank && touched.bank ? "is-invalid" : ""}`}/>
+                {errors.bank && touched.bank ?  <ErrorMessage name="bank" component="div" className="error-message" /> : null}
+                {formError && formError.bank && formError.bank[0] ? <div className="error-message">{formError?.bank[0]}</div> : null}
+              </SoftBox>
+
+
+              <SoftBox>
+                <SoftBox ml={0.5}>
+                  <SoftTypography component="label" variant="caption" fontWeight="bold">
+                    Account Number
+                  </SoftTypography>
+                </SoftBox>
+                <SoftInput
+                  type="number" 
+                  placeholder="Account Number" 
+                  name="account_no" 
+                  id="account_no" 
+                  onChange={(e)=> {
+                    handleChange(e)
+                    const newData = { ...formError }; 
+                    newData.account_no = []
+                    setFormError(newData)
+                    }
+                  }
+                  onBlur={handleBlur}
+                  className={`${errors.account_no && touched.account_no ? "is-invalid" : ""}`}/>
+                {errors.account_no && touched.account_no ?  <ErrorMessage name="apanccount_no" component="div" className="error-message" /> : null}
+                {formError && formError.account_no && formError.account_no[0] ? <div className="error-message">{formError?.account_no[0]}</div> : null}
+              </SoftBox>
+
+              <SoftBox>
+                <SoftBox ml={0.5}>
+                  <SoftTypography component="label" variant="caption" fontWeight="bold">
+                    IFSC Code
+                  </SoftTypography>
+                </SoftBox>
+                <SoftInput
+                  type="text" 
+                  placeholder="IFSC code" 
+                  name="ifsc" 
+                  id="ifsc" 
+                  onChange={(e)=> {
+                    if(e.target.value !== ''){
+                      setFieldValue('ifsc', e.target.value.toUpperCase())
+                    }else{
+                      setFieldValue('ifsc', '')
+                    }
+                    const newData = { ...formError }; 
+                    newData.ifsc = []
+                    setFormError(newData)
+                    }
+                  }
+                  onBlur={handleBlur}
+                  value={values.ifsc} 
+                  className={`${errors.ifsc && touched.ifsc ? "is-invalid" : ""}`}/>
+                {errors.ifsc && touched.ifsc ?  <ErrorMessage name="ifsc" component="div" className="error-message" /> : null}
+                {formError && formError.ifsc && formError.ifsc[0] ? <div className="error-message">{formError?.ifsc[0]}</div> : null}
+              </SoftBox>
               <SoftBox >
                 <SoftBox ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
@@ -305,7 +391,6 @@ const convertToBase64 = (file) => {
                   autoComplete="disabled"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.confirmPassword}
                   className={`${errors.confirmPassword && touched.confirmPassword ? "is-invalid" : ""}`} />
                 {errors.confirmPassword && touched.confirmPassword ? (
                   <ErrorMessage name="confirmPassword" component="div" className="error-message"/>

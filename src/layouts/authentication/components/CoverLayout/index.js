@@ -21,10 +21,6 @@ function CoverLayout({ color, header, title, description, image, top, children }
     }
   },[])
 
-  // useEffect(()=> {
-  //     console.log(isSignIn)
-  // },isSignIn)
-
   return (
     <PageLayout background="white">
     {!isSignIn ? (

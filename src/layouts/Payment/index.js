@@ -62,12 +62,10 @@ function PaymentDetails() {
         payout : 'payout'
       }
       ApiService.getAllPay().then((res)=> {
-        console.log(res)
         if(res.status === 200){
           setTransactionData(res.data)
         }
       }).catch((err)=>{
-        console.log(err)
       })
     }
   return (
@@ -100,7 +98,6 @@ function PaymentDetails() {
                                       }
                                     }).catch((err)=>{
                                       setPayInDisabled(false);
-                                      console.log(err)
                                     })
 
                                  
@@ -174,7 +171,6 @@ function PaymentDetails() {
                                       }
                                     }).catch((err)=>{
                                       setPayOutDisabled(false);
-                                      console.log(err)
                                     })
                                   }}
                                 >

@@ -58,6 +58,9 @@ function BuildByDevelopers() {
     pan : userData && userData.pan || '',
     clientId : userData && userData.client_code || '',
     user_photo : userData && userData.user_photo || '',
+    bank : userData && userData.bank || '',
+    ifsc :  userData && userData.ifsc || '',
+    account_no :  userData && userData.account_no || '',
 }
 
 
@@ -73,6 +76,12 @@ const schema = Yup.object().shape({
     .required("This field is required"),
     mobile: Yup.string()
     .required("This field is required"),
+    account_no: Yup.string()
+    .required("Account no. is a required field"),
+    bank: Yup.string()
+    .required("Bank is a required field"),
+    ifsc: Yup.string()
+    .required("IFSC is a required field")
 });
 
 const passwordChange = () => {
@@ -114,7 +123,7 @@ const convertToBase64 = (file) => {
         {isEditable ?  <Grid item xs={12} lg={6}>
             <SoftBox display="flex" flexDirection="column" height="100%">
               <SoftTypography variant="h5" fontWeight="bold" gutterBottom>
-                Welcome , {userData && userData.name}
+                Welcome , <span className="text-capitalize">{userData && userData.name}</span>
               </SoftTypography>
               <Formik
                 initialValues={initialValues}
@@ -128,6 +137,9 @@ const convertToBase64 = (file) => {
                     "mobile" : values.mobile,
                     "name" : values.name,
                     "pan" : values.pan,
+                    "bank" : values.bank,
+                    "ifsc" : values.ifsc,
+                    "account_no" : values.account_no,
                     "user_photo" : values.user_photo
                   }
 
@@ -251,6 +263,72 @@ const convertToBase64 = (file) => {
                                    ) : null}
                                 </SoftBox>
                                 <SoftBox>
+                <SoftBox >
+                  <SoftTypography component="label" variant="caption" fontWeight="bold">
+                    Bank Name
+                  </SoftTypography>
+                </SoftBox>
+                <SoftInput
+                  type="text" 
+                  placeholder="Bank Name" 
+                  name="bank" 
+                  id="bank" 
+                  onChange={(e)=> {
+                    handleChange(e)
+                    }
+                  }
+                  onBlur={handleBlur}
+                  className={`${errors.bank && touched.bank ? "is-invalid" : ""}`}/>
+                {errors.bank && touched.bank ?  <ErrorMessage name="bank" component="div" className="error-message" /> : null}
+                </SoftBox>
+
+
+              <SoftBox>
+                <SoftBox>
+                  <SoftTypography component="label" variant="caption" fontWeight="bold">
+                    Account Number
+                  </SoftTypography>
+                </SoftBox>
+                <SoftInput
+                  type="number" 
+                  placeholder="Account Number" 
+                  name="account_no" 
+                  id="account_no" 
+                  onChange={(e)=> {
+                    handleChange(e)
+                    }
+                  }
+                  onBlur={handleBlur}
+                  className={`${errors.account_no && touched.account_no ? "is-invalid" : ""}`}/>
+                {errors.account_no && touched.account_no ?  <ErrorMessage name="account_no" component="div" className="error-message" /> : null}
+             
+              </SoftBox>
+
+              <SoftBox>
+                <SoftBox>
+                  <SoftTypography component="label" variant="caption" fontWeight="bold">
+                    IFSC Code
+                  </SoftTypography>
+                </SoftBox>
+                <SoftInput
+                  type="text" 
+                  placeholder="IFSC code" 
+                  name="ifsc" 
+                  id="ifsc" 
+                  onChange={(e)=> {
+                    if(e.target.value !== ''){
+                      setFieldValue('ifsc', e.target.value.toUpperCase())
+                    }else{
+                      setFieldValue('ifsc', '')
+                    }
+                    }
+                  }
+                  onBlur={handleBlur}
+                  value={values.ifsc} 
+                  className={`${errors.ifsc && touched.ifsc ? "is-invalid" : ""}`}/>
+                {errors.ifsc && touched.ifsc ?  <ErrorMessage name="ifsc" component="div" className="error-message" /> : null}
+              </SoftBox>
+                                <SoftBox>
                 <SoftBox ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
                     User Photo
@@ -300,11 +378,11 @@ const convertToBase64 = (file) => {
           <Grid item xs={12} lg={6}>
             <SoftBox display="flex" flexDirection="column" height="100%">
               <SoftTypography variant="h5" fontWeight="bold" gutterBottom>
-                Welcome , {userData && userData?.name} 
+                Welcome , <span className="text-capitalize">{userData && userData.name}</span>
               </SoftTypography>
               <SoftBox pt={1} mb={0.5}>
                 <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  Name : {userData && userData?.name} 
+                  Name : <span className="text-capitalize">{userData && userData.name}</span>
                 </SoftTypography>
                 </SoftBox>
                 <SoftBox pt={1} mb={0.5}>
@@ -328,12 +406,27 @@ const convertToBase64 = (file) => {
                 </SoftTypography>
                 </SoftBox>
                 <SoftBox pt={1} mb={0.5}>
-
                <SoftTypography variant="body2" color="text" fontWeight="medium">
                   PAN No. : {userData && userData?.pan} 
                 </SoftTypography>
-
               </SoftBox>
+              <SoftBox pt={1} mb={0.5}>
+              <SoftTypography variant="body2" color="text" fontWeight="medium">
+                 Bank Name : {userData && userData?.bank} 
+                </SoftTypography>
+                </SoftBox>
+
+                <SoftBox pt={1} mb={0.5}>
+                <SoftTypography variant="body2" color="text" fontWeight="medium">
+                  IFSC Code : {userData && userData?.ifsc} 
+                </SoftTypography>
+                </SoftBox>
+
+                <SoftBox pt={1} mb={0.5}>
+                <SoftTypography variant="body2" color="text" fontWeight="medium">
+                  Account Number : {userData && userData?.account_no} 
+                </SoftTypography>
+                </SoftBox>
             
               <SoftBox mt={2} bottom={0}>
                 <SoftButton variant="gradient" color="info"  onClick={()=> {
@@ -342,6 +435,23 @@ const convertToBase64 = (file) => {
               </SoftBox>
 
               <hr />
+              <Grid container >
+              <Grid item xs={12} lg={4}>
+                <div className="document-div">
+                  <img src={userData && userData?.aadhar_front_photo} alt="Aadhar front"/>
+                </div>
+              </Grid>
+              <Grid item xs={12} lg={4}>
+              <div className="document-div">
+                <img src={userData && userData?.aadhar_back_photo} alt="Aadhar Back"/>
+                </div>
+              </Grid>
+              <Grid item xs={12} lg={4}>
+              <div className="document-div">
+                <img src={userData && userData?.pan_photo} alt="PAN"/>
+                </div>
+              </Grid>
+              </Grid>
               <SoftBox mt={2} bottom={0}>
               <SoftTypography variant="body2" color="text" fontWeight="medium">
                   Change Password

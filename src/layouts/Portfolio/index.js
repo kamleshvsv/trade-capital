@@ -30,7 +30,6 @@ function PortfolioDetails() {
         setMainLoader(true)
         ApiService.getAllPortfolio()
         .then((result) => {
-          console.log(result, "result")
           if (result.status === 200) {
             setMainLoader(false)
             setPortfolioData(result.data)
@@ -38,7 +37,6 @@ function PortfolioDetails() {
         })
         .catch((err) => {
             setMainLoader(false)
-          console.log(err, "result")
         });
     }
 
@@ -46,7 +44,6 @@ function PortfolioDetails() {
     //     fetch(url).then(response => {
     //         response.blob().then(blob => {
     //             const fileURL = window.URL.createObjectURL(blob);
-    //             console.log(fileURL)
     //             // let alink = document.createElement('a');
     //             // alink.href = fileURL;
     //             // alink.download = `${clientId}.pdf`;
@@ -100,7 +97,6 @@ function PortfolioDetails() {
                                         <td >{data.document != null ? <a
                                             href={data.document}
                                             download="Example-PDF-document"
-                                            target="_blank"
                                             rel="noreferrer"
                                           >
                                           <span className="badge bg-info cursor-pointer">Download PDF</span>

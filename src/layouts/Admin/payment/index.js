@@ -45,7 +45,6 @@ function AdminPaymentDetails() {
           setMainLoader(false)
         }).catch((err)=>{
           setMainLoader(false)
-          console.log(err)
         })
       }
   
@@ -71,19 +70,16 @@ const convertToBase64 = (file) => {
     }
     if (file?.size/1024/1024 < 2) {
      const base64 = await convertToBase64(file);
-     console.log(data)
 
      let req = {
         "id" : data.id,
         "document" : base64
      }
      ApiService.paymentUploadPDF(req).then((res)=>{
-        console.log(res,"reeeeeeee")
         getAllPayment()
         setFileUpload(false)
      }).catch((err)=> {
         setFileUpload(false)
-        console.log(err)
      })
      
     }
@@ -135,9 +131,9 @@ const convertToBase64 = (file) => {
                                     <tr key={data.id} >
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{formatDate(data.created_at)}</td>
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.client_code}</td>
-                                        <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.amount}</td>
+                                        <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>₹ {data.amount}</td>
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.payment_type}</td>
-                                        <td  className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.document != null ? <a  href={data.document} target="_blank" className="badge bg-info cursor-pointer">View PDF</a> : null}</td>
+                                        <td  className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>{data.document != null ? <a  href={data.document} className="badge bg-info cursor-pointer">View PDF</a> : null}</td>
                                         <td className={`${data.payment_type === 'payin' ? "bg-payin" : "bg-payout"}`}>
                                            
                                                 <>

@@ -64,7 +64,6 @@ function AddBankDetails() {
     validationSchema={schema}
     onSubmit={(values) => {
       setDisabled(true);
-      console.log(values,"values")
         toast.success("Message sended successfully");
       }}
     >
